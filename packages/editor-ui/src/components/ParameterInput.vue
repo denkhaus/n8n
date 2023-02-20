@@ -85,7 +85,7 @@
 				></text-edit>
 
 				<code-node-editor
-					v-if="getArgument('editor') === 'codeNodeEditor' && isCodeNode(node)"
+					v-if="getArgument('editor') === 'codeNodeEditor'"
 					:mode="node.parameters.mode"
 					:value="node.parameters.jsCode"
 					:defaultValue="parameter.default"
@@ -101,6 +101,14 @@
 					:rows="getArgument('rows')"
 					:disableExpressionColoring="!isHtmlNode(node)"
 					:disableExpressionCompletions="!isHtmlNode(node)"
+					@valueChanged="valueChangedDebounced"
+				/>
+
+				<sql-editor
+					v-else-if="getArgument('editor') === 'sqlEditor'"
+					:query="node.parameters.query"
+					:dialect="getArgument('sqlDialect')"
+					:isReadOnly="isReadOnly"
 					@valueChanged="valueChangedDebounced"
 				/>
 
@@ -353,7 +361,7 @@ import type {
 	INodePropertyCollection,
 	NodeParameterValueType,
 } from 'n8n-workflow';
-import { NodeHelpers, NodeParameterValue } from 'n8n-workflow';
+import { NodeHelpers } from 'n8n-workflow';
 
 import CredentialsSelect from '@/components/CredentialsSelect.vue';
 import ImportParameter from '@/components/ImportParameter.vue';
@@ -367,6 +375,7 @@ import ExpressionParameterInput from '@/components/ExpressionParameterInput.vue'
 import TextEdit from '@/components/TextEdit.vue';
 import CodeNodeEditor from '@/components/CodeNodeEditor/CodeNodeEditor.vue';
 import HtmlEditor from '@/components/HtmlEditor/HtmlEditor.vue';
+import SqlEditor from '@/components/SqlEditor/SqlEditor.vue';
 import { externalHooks } from '@/mixins/externalHooks';
 import { nodeHelpers } from '@/mixins/nodeHelpers';
 import { showMessage } from '@/mixins/showMessage';
@@ -375,7 +384,6 @@ import { hasExpressionMapping, isValueExpression, isResourceLocatorValue } from 
 
 import mixins from 'vue-typed-mixins';
 import { CUSTOM_API_CALL_KEY, HTML_NODE_TYPE } from '@/constants';
-import { CODE_NODE_TYPE } from '@/constants';
 import type { PropType } from 'vue';
 import { debounceHelper } from '@/mixins/debounce';
 import { mapStores } from 'pinia';
@@ -398,6 +406,7 @@ export default mixins(
 	components: {
 		CodeNodeEditor,
 		HtmlEditor,
+		SqlEditor,
 		ExpressionEdit,
 		ExpressionParameterInput,
 		NodeCredentials,
@@ -971,9 +980,6 @@ export default mixins(
 			});
 
 			this.$emit('focus');
-		},
-		isCodeNode(node: INodeUi): boolean {
-			return node.type === CODE_NODE_TYPE;
 		},
 		isHtmlNode(node: INodeUi): boolean {
 			return node.type === HTML_NODE_TYPE;
