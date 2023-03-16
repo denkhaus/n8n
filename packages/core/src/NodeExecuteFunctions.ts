@@ -81,7 +81,12 @@ import { IncomingMessage } from 'http';
 import { stringify } from 'qs';
 import type { Token } from 'oauth-1.0a';
 import clientOAuth1 from 'oauth-1.0a';
-import clientOAuth2 from 'client-oauth2';
+import type {
+	ClientOAuth2Options,
+	ClientOAuth2RequestObject,
+	ClientOAuth2TokenData,
+} from '@n8n_io/client-oauth2';
+import { ClientOAuth2 } from '@n8n_io/client-oauth2';
 import crypto, { createHmac } from 'crypto';
 import get from 'lodash.get';
 import type { Request, Response } from 'express';
@@ -1084,14 +1089,14 @@ export async function requestOAuth2(
 		throw new Error('OAuth credentials not connected!');
 	}
 
-	const oAuthClient = new clientOAuth2({
+	const oAuthClient = new ClientOAuth2({
 		clientId: credentials.clientId as string,
 		clientSecret: credentials.clientSecret as string,
 		accessTokenUri: credentials.accessTokenUrl as string,
 		scopes: (credentials.scope as string).split(' '),
 	});
 
-	let oauthTokenData = credentials.oauthTokenData as clientOAuth2.Data;
+	let oauthTokenData = credentials.oauthTokenData as ClientOAuth2TokenData;
 
 	// if it's the first time using the credentials, get the access token and save it into the DB.
 	if (
@@ -1120,6 +1125,8 @@ export async function requestOAuth2(
 	}
 
 	const token = oAuthClient.createToken(
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		get(oauthTokenData, oAuth2Options?.property as string) || oauthTokenData.accessToken,
 		oauthTokenData.refreshToken,
 		oAuth2Options?.tokenType || oauthTokenData.tokenType,
@@ -1127,7 +1134,7 @@ export async function requestOAuth2(
 	);
 	// Signs the request by adding authorization headers or query parameters depending
 	// on the token-type used.
-	const newRequestOptions = token.sign(requestOptions as clientOAuth2.RequestObject);
+	const newRequestOptions = token.sign(requestOptions as ClientOAuth2RequestObject);
 	const newRequestHeaders = (newRequestOptions.headers = newRequestOptions.headers ?? {});
 	// If keep bearer is false remove the it from the authorization header
 	if (oAuth2Options?.keepBearer === false && typeof newRequestHeaders.Authorization === 'string') {
@@ -1167,7 +1174,7 @@ export async function requestOAuth2(
 				if (OAuth2GrantType.clientCredentials === credentials.grantType) {
 					newToken = await getClientCredentialsToken(token.client, credentials);
 				} else {
-					newToken = await token.refresh(tokenRefreshOptions);
+					newToken = await token.refresh(tokenRefreshOptions as unknown as ClientOAuth2Options);
 				}
 
 				Logger.debug(
@@ -1187,7 +1194,7 @@ export async function requestOAuth2(
 					credentialsType,
 					credentials,
 				);
-				const refreshedRequestOption = newToken.sign(requestOptions as clientOAuth2.RequestObject);
+				const refreshedRequestOption = newToken.sign(requestOptions as ClientOAuth2RequestObject);
 
 				if (oAuth2Options?.keyToIncludeInAccessTokenHeader) {
 					Object.assign(newRequestHeaders, {
@@ -1246,7 +1253,7 @@ export async function requestOAuth2(
 				if (OAuth2GrantType.clientCredentials === credentials.grantType) {
 					newToken = await getClientCredentialsToken(token.client, credentials);
 				} else {
-					newToken = await token.refresh(tokenRefreshOptions);
+					newToken = await token.refresh(tokenRefreshOptions as unknown as ClientOAuth2Options);
 				}
 				Logger.debug(
 					`OAuth2 token for "${credentialsType}" used by node "${node.name}" has been renewed.`,
@@ -1274,7 +1281,7 @@ export async function requestOAuth2(
 				);
 
 				// Make the request again with the new token
-				const newRequestOptions = newToken.sign(requestOptions as clientOAuth2.RequestObject);
+				const newRequestOptions = newToken.sign(requestOptions as ClientOAuth2RequestObject);
 				newRequestOptions.headers = newRequestOptions.headers ?? {};
 
 				if (oAuth2Options?.keyToIncludeInAccessTokenHeader) {
