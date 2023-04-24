@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { UsersProperties } from '../../interfaces';
+import type { UsersProperties } from '../../interfaces';
 
 export const createDescription: UsersProperties = [
 	...globalDescr.jsonParameters('users', 'create'),

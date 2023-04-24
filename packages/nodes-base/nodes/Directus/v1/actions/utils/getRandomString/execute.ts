@@ -5,11 +5,11 @@ export async function getRandomString(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
-	const additionalFields = this.getNodeParameter('additionalFields', index) as IDataObject;
-	const length = (additionalFields?.['length'] as number) ?? null;
+	const additionalFields = this.getNodeParameter('additionalFields', index);
+	const length = (additionalFields?.length as number) ?? null;
 
 	const requestMethod = 'GET';
-	const endpoint = `utils/random/string`;
+	const endpoint = 'utils/random/string';
 
 	const qs: IDataObject = length ? { length } : {};
 	const body: IDataObject = {};

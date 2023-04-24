@@ -1,15 +1,28 @@
-import {
+import type {
 	IBinaryKeyData,
 	IDataObject,
 	IExecuteFunctions,
 	IExecuteSingleFunctions,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { IAggregationDescription } from '../types';
+import type { IAggregationDescription } from '../types';
+
+export function hasAnyKeys(o: IDataObject | undefined): boolean {
+	return !!o && !!Object.keys(o).length;
+}
+
+export function splitUpResponse(
+	response: IDataObject | IDataObject[],
+	binary?: IBinaryKeyData,
+): IDataObject | IDataObject[] {
+	return Array.isArray(response)
+		? response.map((item) => (hasAnyKeys(binary) ? { json: item, binary } : { json: item }))
+		: response;
+}
 
 export function buildExecutionData(
 	this: IExecuteFunctions,
-	response: IDataObject,
+	response: IDataObject | IDataObject[],
 	split: boolean,
 	binary?: IBinaryKeyData,
 ): INodeExecutionData[] {
@@ -34,23 +47,10 @@ export function buildEndpoint(
 	return (endpoint = `${endpoint}/${params.join('/')}`);
 }
 
-export function hasAnyKeys(o: IDataObject | undefined): boolean {
-	return !!o && !!Object.keys(o).length;
-}
-
 export function formatResponse(response: any): IDataObject | IDataObject[] {
 	let data = typeof response !== 'object' ? { result: response } : response.data ?? {};
 	data = typeof data !== 'object' ? { result: data } : data;
 	return Array.isArray(data) && data.length === 0 ? {} : data;
-}
-
-export function splitUpResponse(
-	response: IDataObject | IDataObject[],
-	binary?: IBinaryKeyData,
-): IDataObject | IDataObject[] {
-	return Array.isArray(response)
-		? response.map((item) => (hasAnyKeys(binary) ? { json: item, binary } : { json: item }))
-		: response;
 }
 
 export function parseData(data: string | IDataObject): IDataObject {
@@ -76,7 +76,7 @@ export function applyVarsTo(target: IDataObject, vars: IDataObject) {
 
 export async function responseToBinary(
 	this: IExecuteFunctions | IExecuteSingleFunctions,
-	response: IDataObject,
+	response: IDataObject | IDataObject[],
 	exportType: string,
 	fileName: string = 'export',
 	binaryPropertyName: string = 'data',
@@ -85,10 +85,13 @@ export async function responseToBinary(
 
 	if (exportType) {
 		let binaryData: Buffer, mimeType: string, fileExtension: string;
-		const strContent = (response.result as string) ?? 'content empty';
+
+		const strContent = Array.isArray(response)
+			? JSON.stringify(response)
+			: (response.result as string) ?? JSON.stringify(response);
 
 		if (exportType === 'json') {
-			binaryData = Buffer.from(JSON.stringify(response));
+			binaryData = Buffer.from(strContent);
 			mimeType = 'application/json';
 			fileExtension = 'json';
 			fileName = `${fileName}.${fileExtension}`;
@@ -107,7 +110,7 @@ export async function responseToBinary(
 			mimeType = '';
 		}
 
-		binary![binaryPropertyName] = await this.helpers.prepareBinaryData(
+		binary[binaryPropertyName] = await this.helpers.prepareBinaryData(
 			binaryData,
 			fileName,
 			mimeType,

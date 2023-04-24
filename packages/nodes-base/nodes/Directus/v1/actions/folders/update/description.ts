@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { FoldersProperties } from '../../interfaces';
+import type { FoldersProperties } from '../../interfaces';
 
 export const updateDescription: FoldersProperties = [
 	{

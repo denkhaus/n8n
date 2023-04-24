@@ -1,4 +1,4 @@
-import { FilesProperties } from '../../interfaces';
+import type { FilesProperties } from '../../interfaces';
 
 export const importDescription: FilesProperties = [
 	{
@@ -35,7 +35,8 @@ export const importDescription: FilesProperties = [
 				type: 'json',
 				placeholder: '{\n	"title": "Example"\n}',
 				default: null,
-				description: 'Any of [the file object](https://docs.directus.io/reference/api/system/files/#the-file-object)\'s properties',
+				description:
+					"Any of [the file object](https://docs.directus.io/reference/api/system/files/#the-file-object)'s properties",
 				typeOptions: {
 					alwaysOpenEditWindow: true,
 				},

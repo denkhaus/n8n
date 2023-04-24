@@ -1,4 +1,4 @@
-import { PermissionsProperties } from '../../interfaces';
+import type { PermissionsProperties } from '../../interfaces';
 
 export const updateDescription: PermissionsProperties = [
 	{
@@ -28,7 +28,8 @@ export const updateDescription: PermissionsProperties = [
 		},
 		placeholder: '{\n	"fields": ["id", "title", "body"]\n}',
 		default: null,
-		description: 'A partial [permissions object](https://docs.directus.io/reference/api/system/permissions/#the-permission-object)',
+		description:
+			'A partial [permissions object](https://docs.directus.io/reference/api/system/permissions/#the-permission-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

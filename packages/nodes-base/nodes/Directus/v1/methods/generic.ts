@@ -1,4 +1,4 @@
-import {
+import type {
 	IBinaryKeyData,
 	IDataObject,
 	IExecuteFunctions,
@@ -7,7 +7,13 @@ import {
 } from 'n8n-workflow';
 import { directusApiRequest } from '../transport';
 import type { CallAPIFunc } from '../types';
-import { helpers } from '.';
+import {
+	applyVarsTo,
+	buildEndpoint,
+	buildExecutionData,
+	parseData,
+	responseToBinary,
+} from './helpers';
 
 export function callAPI(
 	requestMethod: IHttpRequestMethods,
@@ -15,11 +21,11 @@ export function callAPI(
 	bodyParam?: string,
 ): CallAPIFunc {
 	return async function (this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-		const endpoint = helpers.buildEndpoint.call(this, index, endpointParams);
+		const endpoint = buildEndpoint.call(this, index, endpointParams);
 
 		const body: IDataObject =
 			bodyParam && bodyParam.length > 0
-				? helpers.parseData(this.getNodeParameter(bodyParam, index) as IDataObject | string)
+				? parseData(this.getNodeParameter(bodyParam, index) as IDataObject | string)
 				: {};
 
 		const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
@@ -33,22 +39,22 @@ export function listStd(endpointParams: string[]): CallAPIFunc {
 		index: number,
 	): Promise<INodeExecutionData[]> {
 		const splitIntoItems = this.getNodeParameter('splitIntoItems', index) as boolean;
-		const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+		const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 
 		const requestMethod = 'GET';
-		const endpoint = helpers.buildEndpoint.call(this, index, endpointParams);
+		const endpoint = buildEndpoint.call(this, index, endpointParams);
 
 		let qs = {} as IDataObject;
 		let additionalFields = {} as IDataObject;
 
 		if (parametersAreJson) {
 			const data = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
-			qs = helpers.parseData(data);
+			qs = parseData(data);
 		} else {
-			additionalFields = this.getNodeParameter('additionalFields', index) as IDataObject;
-			const returnAll = this.getNodeParameter('returnAll', index) as boolean;
-			qs.limit = returnAll ? -1 : (this.getNodeParameter('limit', index) as number) ?? 10;
-			helpers.applyVarsTo(qs, additionalFields);
+			additionalFields = this.getNodeParameter('additionalFields', index);
+			const returnAll = this.getNodeParameter('returnAll', index);
+			qs.limit = returnAll ? -1 : this.getNodeParameter('limit', index) ?? 10;
+			applyVarsTo(qs, additionalFields);
 		}
 
 		const body: IDataObject = {};
@@ -56,7 +62,7 @@ export function listStd(endpointParams: string[]): CallAPIFunc {
 
 		const exportType = (additionalFields.export as string) ?? null;
 		const binary: IBinaryKeyData = exportType
-			? await helpers.responseToBinary.call(
+			? await responseToBinary.call(
 					this,
 					response,
 					exportType,
@@ -65,6 +71,6 @@ export function listStd(endpointParams: string[]): CallAPIFunc {
 			  )
 			: {};
 
-		return helpers.buildExecutionData.call(this, response, splitIntoItems, binary);
+		return buildExecutionData.call(this, response, splitIntoItems, binary);
 	};
 }

@@ -1,4 +1,4 @@
-import { INodeProperties } from 'n8n-workflow';
+import type { INodeProperties } from 'n8n-workflow';
 
 export const Export = (): INodeProperties[] => [
 	{
@@ -32,7 +32,8 @@ export const Aggregate = (): INodeProperties[] => [
 		type: 'fixedCollection',
 		placeholder: 'Add Aggregation Functions',
 		default: '',
-		description: 'Aggregate functions allow you to perform calculations on a set of values, returning a single result',
+		description:
+			'Aggregate functions allow you to perform calculations on a set of values, returning a single result',
 		typeOptions: {
 			multipleValues: true,
 		},
@@ -123,7 +124,8 @@ export const Deep = (): INodeProperties[] => [
 		type: 'json',
 		placeholder: '',
 		default: null,
-		description: 'Deep allows you to set any of the other query parameters on a nested relational dataset',
+		description:
+			'Deep allows you to set any of the other query parameters on a nested relational dataset',
 		typeOptions: {
 			alwaysOpenEditWindow: true,
 		},

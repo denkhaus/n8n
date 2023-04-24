@@ -8,7 +8,7 @@ export async function generateHash(
 	const strString = this.getNodeParameter('string', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `utils/hash/generate`;
+	const endpoint = 'utils/hash/generate';
 
 	const body: IDataObject = { string: strString };
 

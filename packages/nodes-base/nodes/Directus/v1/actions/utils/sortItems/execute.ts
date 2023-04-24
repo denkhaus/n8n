@@ -11,7 +11,7 @@ export async function sortItems(
 
 	const requestMethod = 'POST';
 	const endpoint = `utils/sort/${collection}`;
-	const body = { item, to };
+	const body: IDataObject = { item, to };
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	return this.helpers.returnJsonArray(response);

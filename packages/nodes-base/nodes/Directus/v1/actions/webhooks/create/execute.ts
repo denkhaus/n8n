@@ -6,7 +6,7 @@ export async function create(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
-	const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 
 	let body: IDataObject = {};
 	if (parametersAreJson) {
@@ -18,22 +18,14 @@ export async function create(
 		const actions = this.getNodeParameter('actions', index) as IDataObject | string;
 		const collections = this.getNodeParameter('collections', index) as IDataObject | string;
 
-		if (typeof actions === 'string') {
-			body['actions'] = JSON.parse(actions);
-		} else {
-			body['actions'] = JSON.parse(JSON.stringify(actions));
-		}
-		if (typeof collections === 'string') {
-			body['collections'] = JSON.parse(collections);
-		} else {
-			body['collections'] = JSON.parse(JSON.stringify(collections));
-		}
-		body['name'] = name;
-		body['url'] = url;
+		body.actions = helpers.parseData(actions);
+		body.collections = helpers.parseData(collections);
+		body.name = name;
+		body.url = url;
 	}
 
 	const requestMethod = 'POST';
-	const endpoint = `webhooks`;
+	const endpoint = 'webhooks';
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	return this.helpers.returnJsonArray(response);

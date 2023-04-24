@@ -3,13 +3,13 @@ import { directusApiAssetRequest } from '../../../transport';
 import { helpers } from '../../../methods';
 
 export async function get(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-	const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 	const additionalFields = !parametersAreJson
-		? (this.getNodeParameter('additionalFields', index) as IDataObject)
+		? this.getNodeParameter('additionalFields', index)
 		: {};
 
 	const ID = (this.getNodeParameter('id', index) as string) ?? null;
-	const dataPropertyName = this.getNodeParameter('binaryPropertyName', index) as string;
+	const dataPropertyName = this.getNodeParameter('binaryPropertyName', index);
 	const includeFileData = this.getNodeParameter('includeFileData', index) as boolean;
 
 	const requestMethod = 'GET';
@@ -40,7 +40,7 @@ export async function get(this: IExecuteFunctions, index: number): Promise<INode
 		dataPropertyName,
 		qs,
 	);
-	if (!includeFileData) delete response.json['file'];
+	if (!includeFileData) delete response.json.file;
 
 	return this.helpers.returnJsonArray(response);
 }

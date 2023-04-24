@@ -1,4 +1,4 @@
-import { ItemsProperties } from '../../interfaces';
+import type { ItemsProperties } from '../../interfaces';
 
 export const updateMultipleDescription: ItemsProperties = [
 	{
@@ -13,7 +13,8 @@ export const updateMultipleDescription: ItemsProperties = [
 		},
 		placeholder: '{\n	"keys": [1, 2],\n	"data": {\n		"status": "published"\n	}\n}',
 		default: null,
-		description: 'An array of partial [item objects](https://docs.directus.io/reference/api/items/#the-item-object)',
+		description:
+			'An array of partial [item objects](https://docs.directus.io/reference/api/items/#the-item-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

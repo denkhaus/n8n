@@ -1,4 +1,4 @@
-import { ItemsProperties } from '../../interfaces';
+import type { ItemsProperties } from '../../interfaces';
 
 export const deleteDescription: ItemsProperties = [
 	{

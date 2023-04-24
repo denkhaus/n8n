@@ -1,4 +1,4 @@
-import { PermissionsProperties } from '../../interfaces';
+import type { PermissionsProperties } from '../../interfaces';
 
 export const getDescription: PermissionsProperties = [
 	{

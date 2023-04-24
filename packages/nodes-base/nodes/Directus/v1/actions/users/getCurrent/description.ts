@@ -1,3 +1,3 @@
-import { UsersProperties } from '../../interfaces';
+import type { UsersProperties } from '../../interfaces';
 
 export const getCurrentDescription: UsersProperties = [];

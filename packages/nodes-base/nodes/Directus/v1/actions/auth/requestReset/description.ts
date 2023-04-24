@@ -1,4 +1,4 @@
-import { AuthProperties } from '../../interfaces';
+import type { AuthProperties } from '../../interfaces';
 
 export const requestResetDescription: AuthProperties = [
 	{

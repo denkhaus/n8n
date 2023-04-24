@@ -1,4 +1,4 @@
-import { FilesProperties } from '../../interfaces';
+import type { FilesProperties } from '../../interfaces';
 
 export const updateMultipleDescription: FilesProperties = [
 	{

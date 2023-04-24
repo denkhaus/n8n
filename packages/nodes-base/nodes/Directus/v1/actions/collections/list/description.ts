@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { CollectionsProperties } from '../../interfaces';
+import type { CollectionsProperties } from '../../interfaces';
 
 export const listDescription: CollectionsProperties = [
 	...globalDescr.splitIntoItems('collections', 'list'),

@@ -7,8 +7,8 @@ export async function update(
 ): Promise<INodeExecutionData[]> {
 	const comment = this.getNodeParameter('comment', index) as string;
 	const ID = this.getNodeParameter('id', index) as number;
-	const additionalFields = (this.getNodeParameter('additionalFields', index) as IDataObject) ?? {};
-	const meta = (additionalFields['meta'] as string) ?? '';
+	const additionalFields = this.getNodeParameter('additionalFields', index) ?? {};
+	const meta = (additionalFields.meta as string) ?? '';
 
 	const requestMethod = 'PATCH';
 	const endpoint = `activity/comment/${ID}`;

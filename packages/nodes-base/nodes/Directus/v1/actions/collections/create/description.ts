@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { CollectionsProperties } from '../../interfaces';
+import type { CollectionsProperties } from '../../interfaces';
 
 export const createDescription: CollectionsProperties = [
 	{
@@ -69,7 +69,8 @@ export const createDescription: CollectionsProperties = [
 				type: 'string',
 				placeholder: '',
 				default: '',
-				description: 'Text representation of how items from this collection are shown across the system',
+				description:
+					'Text representation of how items from this collection are shown across the system',
 			},
 			{
 				displayName: 'Fields (JSON)',
@@ -97,7 +98,7 @@ export const createDescription: CollectionsProperties = [
 				type: 'string',
 				placeholder: 'people',
 				default: '',
-				description: 'Name of a Google Material Design Icon that\'s assigned to this collection',
+				description: "Name of a Google Material Design Icon that's assigned to this collection",
 			},
 			{
 				displayName: 'Note',
@@ -129,7 +130,8 @@ export const createDescription: CollectionsProperties = [
 				type: 'string',
 				placeholder: '',
 				default: '',
-				description: 'Key value pairs of how to show this collection\'s name in different languages in the admin app',
+				description:
+					"Key value pairs of how to show this collection's name in different languages in the admin app",
 			},
 			{
 				displayName: 'Unarchive Value',

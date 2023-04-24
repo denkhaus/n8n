@@ -1,24 +1,24 @@
-import type { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow';
+import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { directusApiRequest } from '../../../transport';
 
 export async function create(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
-	const parametersAreJson = (this.getNodeParameter('jsonParameters', index) as boolean) ?? false;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index) ?? false;
 	const collection = !parametersAreJson
 		? (this.getNodeParameter('collection', index) as string)
 		: null;
 
 	const additionalFields = !parametersAreJson
-		? (this.getNodeParameter('additionalFields', index) as IDataObject)
+		? this.getNodeParameter('additionalFields', index)
 		: {};
 	const data = parametersAreJson
 		? (this.getNodeParameter('bodyParametersJson', index) as object)
 		: {};
 
 	const requestMethod = 'POST';
-	const endpoint = `collections`;
+	const endpoint = 'collections';
 
 	let body = {} as any;
 	if (parametersAreJson) {
@@ -32,7 +32,7 @@ export async function create(
 			if (['fields'].includes(key)) {
 				const object = additionalFields[key] as object | string;
 				if (typeof object === 'string') {
-					body[key] = JSON.stringify(JSON.parse(object)) as string;
+					body[key] = JSON.stringify(JSON.parse(object));
 				} else {
 					body[key] = JSON.stringify(object);
 				}
@@ -40,7 +40,7 @@ export async function create(
 				body[key] = additionalFields[key];
 			}
 		}
-		body['collection'] = collection;
+		body.collection = collection;
 	}
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

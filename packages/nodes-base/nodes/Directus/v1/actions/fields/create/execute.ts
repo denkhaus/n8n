@@ -7,12 +7,11 @@ export async function create(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const collection = this.getNodeParameter('collection', index) as string;
-	const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 
 	const type = this.getNodeParameter('type', index) as string;
 	const field = this.getNodeParameter('field', index) as string;
-	const additionalFields =
-		(this.getNodeParameter('additionalFields', index) as IDataObject) ?? null;
+	const additionalFields = this.getNodeParameter('additionalFields', index) ?? null;
 
 	const requestMethod = 'POST';
 	const endpoint = `fields/${collection}`;

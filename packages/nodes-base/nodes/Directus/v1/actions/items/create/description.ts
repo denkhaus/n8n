@@ -1,4 +1,4 @@
-import { ItemsProperties } from '../../interfaces';
+import type { ItemsProperties } from '../../interfaces';
 
 export const createDescription: ItemsProperties = [
 	{
@@ -31,7 +31,8 @@ export const createDescription: ItemsProperties = [
 		},
 		placeholder: '{\n	"title": "Hello world!",\n	"body": "This is our first article"\n}',
 		default: null,
-		description: 'The partial [item object](https://docs.directus.io/reference/api/items/#the-item-object)',
+		description:
+			'The partial [item object](https://docs.directus.io/reference/api/items/#the-item-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

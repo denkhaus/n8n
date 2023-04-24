@@ -1,4 +1,4 @@
-import {
+import type {
 	IExecuteFunctions,
 	ILoadOptionsFunctions,
 	IDataObject,
@@ -8,11 +8,11 @@ import {
 	IWebhookFunctions,
 	IBinaryKeyData,
 	INodeExecutionData,
-	NodeApiError,
 	JsonObject,
 } from 'n8n-workflow';
-import { DirectusCredentials, IAggregationDescription } from '../types';
-import { helpers } from '../methods';
+import type { DirectusCredentials } from '../types';
+import { NodeApiError } from 'n8n-workflow';
+import { formatResponse } from '../methods/helpers';
 
 const StandardUserAgent =
 	'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0';
@@ -23,7 +23,7 @@ export async function directusApiRequest(
 	path: string,
 	body: any = {},
 	qs: IDataObject = {},
-): Promise<any> {
+): Promise<IDataObject | IDataObject[]> {
 	const credentials = (await this.getCredentials('directusApi')) as DirectusCredentials;
 
 	if (!credentials) {
@@ -47,9 +47,9 @@ export async function directusApiRequest(
 	};
 
 	try {
-		options.headers!['Authorization'] = accessToken ? `Bearer ${accessToken}` : '';
+		options.headers!.Authorization = accessToken ? `Bearer ${accessToken}` : '';
 		const res = await this.helpers.httpRequestWithAuthentication.call(this, 'directusApi', options);
-		return helpers.formatResponse(res);
+		return formatResponse(res);
 	} catch (error) {
 		throw error;
 	}
@@ -69,8 +69,8 @@ export async function directusApiAssetRequest(
 	}
 
 	const params = credentials;
-	const url = params.url!.replace(/\/$/, '') || null;
-	const accessToken = params.accessToken! || null;
+	const url = params.url.replace(/\/$/, '') || null;
+	const accessToken = params.accessToken || null;
 
 	//console.log({url,path,ID});
 
@@ -117,10 +117,10 @@ export async function directusApiAssetRequest(
 		const binaryData = Buffer.from(res);
 
 		const binary: IBinaryKeyData = {};
-		binary![dataPropertyName] = await this.helpers.prepareBinaryData(
+		binary[dataPropertyName] = await this.helpers.prepareBinaryData(
 			binaryData,
-			file.filename_download,
-			file.type,
+			file.filename_download as string,
+			file.type as string,
 		);
 
 		const result: INodeExecutionData = {
@@ -139,8 +139,8 @@ export async function directusApiFileRequest(
 	this: IExecuteFunctions | IExecuteSingleFunctions | IWebhookFunctions,
 	method: IHttpRequestMethods,
 	path: string,
-	formData: any = {},
-	body: any = {},
+	formData: IDataObject = {},
+	body: IDataObject = {},
 	qs: IDataObject = {},
 ): Promise<any> {
 	console.log('Received file for processing');
@@ -152,8 +152,8 @@ export async function directusApiFileRequest(
 	}
 
 	const params = credentials;
-	const url = params.url!.replace(/\/$/, '') || null;
-	const accessToken = params.accessToken! || null;
+	const url = params.url.replace(/\/$/, '') || null;
+	const accessToken = params.accessToken || null;
 
 	const optionsFormData: IHttpRequestOptions = {
 		headers: {
@@ -174,7 +174,7 @@ export async function directusApiFileRequest(
 			// 1. Create a file with content
 
 			console.log('Uploading raw file');
-			const response = await this.helpers.request!(optionsFormData);
+			const response = await this.helpers.request(optionsFormData);
 			//const response = await this.helpers.httpRequestWithAuthentication.call(this, 'directusApi', optionsFormData);
 			const file = JSON.parse(response).data;
 
@@ -188,12 +188,12 @@ export async function directusApiFileRequest(
 		}
 		if (method === 'PATCH') {
 			// 1. Check if formdata and/or body are provided
-			const isForm = ((Object.keys(formData).length > 0) as boolean) ?? false;
-			const isBody = ((Object.keys(body).length > 0) as boolean) ?? false;
+			const isForm = Object.keys(formData).length > 0 ?? false;
+			const isBody = Object.keys(body).length > 0 ?? false;
 
 			// 2. Sequentially, update them both
 			if (isForm) {
-				const response = await this.helpers.request!(optionsFormData);
+				const response = await this.helpers.request(optionsFormData);
 				//const response = await this.helpers.httpRequestWithAuthentication.call(this, 'directusApi', optionsFormData);
 				const file = JSON.parse(response).data;
 				Object.assign(responseFile, file);

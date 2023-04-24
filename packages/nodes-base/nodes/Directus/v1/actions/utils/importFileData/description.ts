@@ -1,4 +1,4 @@
-import { UtilsProperties } from '../../interfaces';
+import type { UtilsProperties } from '../../interfaces';
 
 export const importFileDataDescription: UtilsProperties = [
 	{

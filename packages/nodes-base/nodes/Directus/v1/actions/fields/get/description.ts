@@ -1,4 +1,4 @@
-import { FieldsProperties } from '../../interfaces';
+import type { FieldsProperties } from '../../interfaces';
 
 export const getDescription: FieldsProperties = [
 	{

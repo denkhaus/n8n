@@ -9,7 +9,7 @@ export async function enable2FA(
 	const otp = this.getNodeParameter('otp', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `users/me/tfa/enable`;
+	const endpoint = 'users/me/tfa/enable';
 	const body: IDataObject = { secret, otp };
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

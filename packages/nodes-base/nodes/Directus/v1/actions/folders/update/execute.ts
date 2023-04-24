@@ -7,9 +7,9 @@ export async function update(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const ID = this.getNodeParameter('id', index) as string;
-	const parametersAreJson = (this.getNodeParameter('jsonParameters', index) as boolean) ?? false;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index) ?? false;
 	const additionalFields = !parametersAreJson
-		? (this.getNodeParameter('additionalFields', index) as IDataObject)
+		? this.getNodeParameter('additionalFields', index)
 		: {};
 
 	const requestMethod = 'PATCH';

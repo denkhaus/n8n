@@ -1,4 +1,4 @@
-import { WebhooksProperties } from '../../interfaces';
+import type { WebhooksProperties } from '../../interfaces';
 
 export const updateDescription: WebhooksProperties = [
 	{
@@ -28,7 +28,8 @@ export const updateDescription: WebhooksProperties = [
 		},
 		placeholder: '{\n	"name": "Build Website"\n}',
 		default: null,
-		description: 'A partial [webhook object](https://docs.directus.io/reference/api/system/webhooks/#the-webhook-object)',
+		description:
+			'A partial [webhook object](https://docs.directus.io/reference/api/system/webhooks/#the-webhook-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

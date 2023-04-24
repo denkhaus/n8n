@@ -3,7 +3,6 @@ import type {
 	IDataObject,
 	INodeExecutionData,
 	IBinaryKeyData,
-	IBinaryData,
 } from 'n8n-workflow';
 import { directusApiRequest, directusApiFileRequest } from '../../../transport';
 import { helpers } from '../../../methods';
@@ -13,23 +12,21 @@ export async function create(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const sendBinaryData = this.getNodeParameter('sendBinaryData', index) as boolean;
-	const additionalFields =
-		(this.getNodeParameter('additionalFields', index) as IDataObject) ?? null;
+	const additionalFields = this.getNodeParameter('additionalFields', index) ?? null;
 
 	const data: IDataObject = (additionalFields.data as IDataObject) ?? {};
 	const body: IDataObject = data ? helpers.parseData(data) : {};
 
 	const requestMethod = 'POST';
-	const endpoint = `files`;
+	const endpoint = 'files';
 
 	let response: any;
 	if (sendBinaryData) {
 		const items = this.getInputData();
 		const item = items[index].binary as IBinaryKeyData;
 
-		const binaryPropertyName =
-			(this.getNodeParameter('binaryPropertyName', index) as string) ?? null;
-		const binaryData = item[binaryPropertyName] as IBinaryData;
+		const binaryPropertyName = this.getNodeParameter('binaryPropertyName', index) ?? null;
+		const binaryData = item[binaryPropertyName];
 		const binaryDataBuffer = await this.helpers.getBinaryDataBuffer(index, binaryPropertyName);
 
 		const formData = {};

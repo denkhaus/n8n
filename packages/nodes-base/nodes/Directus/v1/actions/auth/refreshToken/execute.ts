@@ -8,7 +8,7 @@ export async function refreshToken(
 	const refresh_token = this.getNodeParameter('refreshToken', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `auth/refresh`;
+	const endpoint = 'auth/refresh';
 	const body: IDataObject = { refresh_token };
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

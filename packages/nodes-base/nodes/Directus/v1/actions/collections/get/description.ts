@@ -1,4 +1,4 @@
-import { CollectionsProperties } from '../../interfaces';
+import type { CollectionsProperties } from '../../interfaces';
 
 export const getDescription: CollectionsProperties = [
 	{

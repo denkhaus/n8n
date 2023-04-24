@@ -7,13 +7,13 @@ export async function update(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const collection = this.getNodeParameter('collection', index) as string;
-	const additionalFields = (this.getNodeParameter('additionalFields', index) as IDataObject) ?? {};
+	const additionalFields = this.getNodeParameter('additionalFields', index) ?? {};
 
 	const requestMethod = 'PATCH';
 	const endpoint = `collections/${collection}`;
 	const body: IDataObject = { collection };
 
-	body['meta'] = helpers.parseData(additionalFields['meta'] as IDataObject | string);
+	body.meta = helpers.parseData(additionalFields.meta as IDataObject | string);
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	return this.helpers.returnJsonArray(response);

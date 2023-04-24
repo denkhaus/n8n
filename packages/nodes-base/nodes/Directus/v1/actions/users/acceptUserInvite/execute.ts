@@ -9,7 +9,7 @@ export async function acceptUserInvite(
 	const password = this.getNodeParameter('password', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `users/invite/accept`;
+	const endpoint = 'users/invite/accept';
 	const body: IDataObject = { token, password };
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

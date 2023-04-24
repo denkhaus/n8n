@@ -8,7 +8,7 @@ export async function disable2FA(
 	const otp = this.getNodeParameter('otp', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `users/me/tfa/disable`;
+	const endpoint = 'users/me/tfa/disable';
 	const body: IDataObject = { otp };
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

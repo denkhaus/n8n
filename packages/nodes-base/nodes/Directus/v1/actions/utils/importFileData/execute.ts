@@ -1,9 +1,4 @@
-import type {
-	IBinaryData,
-	IBinaryKeyData,
-	IExecuteFunctions,
-	INodeExecutionData,
-} from 'n8n-workflow';
+import type { IBinaryKeyData, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { directusApiFileRequest } from '../../../transport';
 
 export async function importFileData(
@@ -17,8 +12,8 @@ export async function importFileData(
 
 	const items = this.getInputData();
 	const item = items[index].binary as IBinaryKeyData;
-	const binaryPropertyName = (this.getNodeParameter('binaryPropertyName', index) as string) ?? null;
-	const binaryData = item[binaryPropertyName] as IBinaryData;
+	const binaryPropertyName = this.getNodeParameter('binaryPropertyName', index) ?? null;
+	const binaryData = item[binaryPropertyName];
 	const binaryDataBuffer = await this.helpers.getBinaryDataBuffer(index, binaryPropertyName);
 
 	const formData = {};

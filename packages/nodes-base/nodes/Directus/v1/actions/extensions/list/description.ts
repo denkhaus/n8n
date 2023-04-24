@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { ExtensionsProperties } from '../../interfaces';
+import type { ExtensionsProperties } from '../../interfaces';
 
 export const listDescription: ExtensionsProperties = [
 	{

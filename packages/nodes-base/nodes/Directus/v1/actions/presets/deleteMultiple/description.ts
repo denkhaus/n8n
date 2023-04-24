@@ -1,4 +1,4 @@
-import { PresetsProperties } from '../../interfaces';
+import type { PresetsProperties } from '../../interfaces';
 
 export const deleteMultipleDescription: PresetsProperties = [
 	{

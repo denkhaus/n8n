@@ -1,4 +1,4 @@
-import { RevisionsProperties } from '../../interfaces';
+import type { RevisionsProperties } from '../../interfaces';
 
 export const getDescription: RevisionsProperties = [
 	{

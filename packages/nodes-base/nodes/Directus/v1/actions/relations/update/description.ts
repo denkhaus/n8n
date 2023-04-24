@@ -1,4 +1,4 @@
-import { RelationsProperties } from '../../interfaces';
+import type { RelationsProperties } from '../../interfaces';
 
 export const updateDescription: RelationsProperties = [
 	{

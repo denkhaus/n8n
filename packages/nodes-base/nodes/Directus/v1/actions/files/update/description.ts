@@ -1,4 +1,4 @@
-import { FilesProperties } from '../../interfaces';
+import type { FilesProperties } from '../../interfaces';
 
 export const updateDescription: FilesProperties = [
 	{
@@ -44,7 +44,8 @@ export const updateDescription: FilesProperties = [
 				resource: ['files'],
 			},
 		},
-		description: 'Name of the binary property which contains the data for the file to be uploaded.For multiple files, values can be provided in the format: `binaryProperty1,binaryProperty2`',
+		description:
+			'Name of the binary property which contains the data for the file to be uploaded.For multiple files, values can be provided in the format: `binaryProperty1,binaryProperty2`',
 	},
 	{
 		displayName: 'Update Fields',
@@ -65,7 +66,8 @@ export const updateDescription: FilesProperties = [
 				type: 'json',
 				placeholder: '',
 				default: null,
-				description: 'Other properties of [the file object](https://https://docs.directus.io/reference/files.html#the-file-object)',
+				description:
+					'Other properties of [the file object](https://https://docs.directus.io/reference/files.html#the-file-object)',
 				typeOptions: {
 					alwaysOpenEditWindow: true,
 				},

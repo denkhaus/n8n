@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { AuthProperties } from '../../interfaces';
+import type { AuthProperties } from '../../interfaces';
 
 export const resetPasswordDescription: AuthProperties = [
 	{

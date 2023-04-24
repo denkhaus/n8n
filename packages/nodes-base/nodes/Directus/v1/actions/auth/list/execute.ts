@@ -6,7 +6,7 @@ export async function list(this: IExecuteFunctions, index: number): Promise<INod
 	const splitIntoItems = this.getNodeParameter('splitIntoItems', index) as boolean;
 
 	const requestMethod = 'GET';
-	const endpoint = `auth/oauth`;
+	const endpoint = 'auth/oauth';
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint);
 	return helpers.buildExecutionData.call(this, response, splitIntoItems);

@@ -1,4 +1,4 @@
-import { UsersProperties } from '../../interfaces';
+import type { UsersProperties } from '../../interfaces';
 
 export const disable2FADescription: UsersProperties = [
 	{

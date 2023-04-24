@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { RelationsProperties } from '../../interfaces';
+import type { RelationsProperties } from '../../interfaces';
 
 export const listAllDescription = globalDescr.listDefault(
 	'relations',

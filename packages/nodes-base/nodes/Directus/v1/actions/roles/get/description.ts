@@ -1,4 +1,4 @@
-import { RolesProperties } from '../../interfaces';
+import type { RolesProperties } from '../../interfaces';
 
 export const getDescription: RolesProperties = [
 	{

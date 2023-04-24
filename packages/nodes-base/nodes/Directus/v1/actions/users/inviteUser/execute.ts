@@ -8,15 +8,15 @@ export async function inviteUser(
 ): Promise<INodeExecutionData[]> {
 	const email = this.getNodeParameter('email', index) as string;
 	const role = this.getNodeParameter('role', index) as string;
-	const additionalFields = (this.getNodeParameter('additionalFields', index) as IDataObject) ?? {};
+	const additionalFields = this.getNodeParameter('additionalFields', index) ?? {};
 
 	const requestMethod = 'POST';
-	const endpoint = `users/invite`;
+	const endpoint = 'users/invite';
 
 	const body: IDataObject = {};
 	helpers.applyVarsTo(body, additionalFields);
-	body['email'] = email;
-	body['role'] = role;
+	body.email = email;
+	body.role = role;
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	return this.helpers.returnJsonArray(response);

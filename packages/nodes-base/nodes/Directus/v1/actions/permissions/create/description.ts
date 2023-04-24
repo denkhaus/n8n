@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { PermissionsProperties } from '../../interfaces';
+import type { PermissionsProperties } from '../../interfaces';
 
 export const createDescription: PermissionsProperties = [
 	{

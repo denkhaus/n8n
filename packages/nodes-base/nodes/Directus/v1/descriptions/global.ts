@@ -1,5 +1,18 @@
-import { INodeProperties } from 'n8n-workflow';
-import { options } from '.';
+import type { INodeProperties } from 'n8n-workflow';
+import {
+	Aggregate,
+	BinaryPropertyName,
+	Deep,
+	Export,
+	ExportFileName,
+	Fields,
+	Filter,
+	GroupBy,
+	Meta,
+	Offset,
+	Search,
+	Sort,
+} from './options';
 
 export const splitIntoItems = (resource: string, operation: string): INodeProperties[] => [
 	{
@@ -142,18 +155,18 @@ export const additionalFields = (resource: string, operation: string): INodeProp
 			},
 		},
 		options: [
-			...options.Aggregate(),
-			...options.BinaryPropertyName(),
-			...options.Deep(),
-			...options.Export(),
-			...options.ExportFileName(),
-			...options.Fields(),
-			...options.Filter(),
-			...options.GroupBy(),
-			...options.Meta(),
-			...options.Offset(),
-			...options.Search(),
-			...options.Sort(),
+			...Aggregate(),
+			...BinaryPropertyName(),
+			...Deep(),
+			...Export(),
+			...ExportFileName(),
+			...Fields(),
+			...Filter(),
+			...GroupBy(),
+			...Meta(),
+			...Offset(),
+			...Search(),
+			...Sort(),
 		],
 	},
 ];

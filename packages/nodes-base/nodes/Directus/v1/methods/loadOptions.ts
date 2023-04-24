@@ -68,7 +68,7 @@ export async function getFieldsInCollection(
 ): Promise<INodePropertyOptions[]> {
 	const collection =
 		(this.getCurrentNodeParameter('collection') as string) ??
-		(`directus_${this.getCurrentNodeParameter('resource')}` as string);
+		`directus_${this.getCurrentNodeParameter('resource')}`;
 
 	if (!collection) {
 		return [] as INodePropertyOptions[];
@@ -91,7 +91,7 @@ export async function getFieldsInCollection(
 
 // Get User Roles
 export async function getRoles(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-	const data = await directusApiRequest.call(this, 'GET', `roles`);
+	const data = await directusApiRequest.call(this, 'GET', 'roles');
 
 	if (!data || !Array.isArray(data) || data.length === 0) {
 		throw new NodeOperationError(this.getNode(), 'No data available');

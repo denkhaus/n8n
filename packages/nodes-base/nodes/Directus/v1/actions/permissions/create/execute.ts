@@ -6,10 +6,10 @@ export async function create(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
-	const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 
 	const requestMethod = 'POST';
-	const endpoint = `permissions`;
+	const endpoint = 'permissions';
 
 	let body: IDataObject = {};
 	if (parametersAreJson) {
@@ -18,8 +18,8 @@ export async function create(
 	} else {
 		const action = this.getNodeParameter('collection', index) as string;
 		const collection = this.getNodeParameter('collection', index) as string;
-		body['collection'] = collection;
-		body['action'] = action;
+		body.collection = collection;
+		body.action = action;
 	}
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

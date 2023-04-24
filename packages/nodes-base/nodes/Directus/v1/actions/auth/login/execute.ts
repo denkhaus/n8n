@@ -3,29 +3,29 @@ import { directusApiRequest } from '../../../transport';
 import { helpers } from '../../../methods';
 
 export async function login(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-	const parametersAreJson = (this.getNodeParameter('jsonParameters', index) as boolean) ?? false;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index) ?? false;
 	const additionalFields = !parametersAreJson
-		? (this.getNodeParameter('additionalFields', index) as IDataObject)
+		? this.getNodeParameter('additionalFields', index)
 		: {};
 	const email = !parametersAreJson ? (this.getNodeParameter('email', index) as string) : '';
 	const password = !parametersAreJson ? (this.getNodeParameter('password', index) as string) : '';
 
 	const requestMethod = 'POST';
-	const endpoint = `auth/login`;
+	const endpoint = 'auth/login';
 
 	let body: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
 		body = helpers.parseData(data);
 	} else {
-		body['email'] = email;
-		body['password'] = password;
+		body.email = email;
+		body.password = password;
 
 		for (const key in additionalFields) {
 			if (['fields'].includes(key)) {
 				const object = additionalFields[key] as object | string;
 				if (typeof object === 'string') {
-					body[key] = JSON.stringify(JSON.parse(object)) as string;
+					body[key] = JSON.stringify(JSON.parse(object));
 				} else {
 					body[key] = JSON.stringify(object);
 				}

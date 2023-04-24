@@ -9,7 +9,7 @@ export async function verifyHash(
 	const hash = this.getNodeParameter('hash', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `utils/hash/verify`;
+	const endpoint = 'utils/hash/verify';
 
 	const body: IDataObject = {
 		hash,

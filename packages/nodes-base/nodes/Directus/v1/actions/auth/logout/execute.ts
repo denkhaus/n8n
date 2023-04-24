@@ -8,7 +8,7 @@ export async function logout(
 	const refresh_token = this.getNodeParameter('data', index) as string;
 
 	const requestMethod = 'POST';
-	const endpoint = `auth/logout`;
+	const endpoint = 'auth/logout';
 	const body = { refresh_token } as IDataObject;
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

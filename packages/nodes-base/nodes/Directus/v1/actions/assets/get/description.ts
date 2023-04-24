@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { AssetsProperties } from '../../interfaces';
+import type { AssetsProperties } from '../../interfaces';
 
 export const getDescription: AssetsProperties = [
 	...globalDescr.jsonParameters('assets', 'get'),

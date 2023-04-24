@@ -1,4 +1,4 @@
-import { RelationsProperties } from '../../interfaces';
+import type { RelationsProperties } from '../../interfaces';
 
 export const deleteDescription: RelationsProperties = [
 	{
@@ -31,7 +31,8 @@ export const deleteDescription: RelationsProperties = [
 		},
 		placeholder: 'author',
 		default: '',
-		description: 'Name of the field that holds the related primary key. This matches the column name in the database.',
+		description:
+			'Name of the field that holds the related primary key. This matches the column name in the database.',
 		required: true,
 		typeOptions: {
 			loadOptionsMethod: 'getRelationalFields',

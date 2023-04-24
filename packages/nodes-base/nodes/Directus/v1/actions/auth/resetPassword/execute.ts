@@ -6,10 +6,10 @@ export async function resetPassword(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
-	const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 
 	const requestMethod = 'POST';
-	const endpoint = `auth/password/reset`;
+	const endpoint = 'auth/password/reset';
 
 	let body: IDataObject = {};
 	if (parametersAreJson) {
@@ -18,8 +18,8 @@ export async function resetPassword(
 	} else {
 		const token = (this.getNodeParameter('token', index) as string) ?? '';
 		const password = (this.getNodeParameter('password', index) as string) ?? '';
-		body['token'] = token;
-		body['password'] = password;
+		body.token = token;
+		body.password = password;
 	}
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

@@ -1,4 +1,4 @@
-import { PresetsProperties } from '../../interfaces';
+import type { PresetsProperties } from '../../interfaces';
 
 export const updateDescription: PresetsProperties = [
 	{
@@ -28,7 +28,8 @@ export const updateDescription: PresetsProperties = [
 		},
 		placeholder: '{\n	"layout": "tabular"\n}',
 		default: null,
-		description: 'A partial [preset object](https://docs.directus.io/reference/api/system/presets/#the-preset-object)',
+		description:
+			'A partial [preset object](https://docs.directus.io/reference/api/system/presets/#the-preset-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

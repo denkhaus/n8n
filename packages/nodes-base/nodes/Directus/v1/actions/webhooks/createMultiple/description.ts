@@ -1,4 +1,4 @@
-import { WebhooksProperties } from '../../interfaces';
+import type { WebhooksProperties } from '../../interfaces';
 
 export const createMultipleDescription: WebhooksProperties = [
 	{
@@ -14,7 +14,8 @@ export const createMultipleDescription: WebhooksProperties = [
 		placeholder:
 			'[\n	{\n		"name": "Example",\n		"actions": ["create", "update"],\n		"collections": ["articles"],\n		"url": "https://example.com"\n	},\n	{\n		"name": "Second Example",\n		"actions": ["delete"],\n		"collections": ["articles"],\n		"url": "https://example.com/on-delete"\n	}\n]',
 		default: null,
-		description: 'An array of partial [webhook object](https://docs.directus.io/reference/api/system/webhooks/#the-webhook-object). `name`, `actions`, `collections`, and `url` are required.',
+		description:
+			'An array of partial [webhook object](https://docs.directus.io/reference/api/system/webhooks/#the-webhook-object). `name`, `actions`, `collections`, and `url` are required.',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

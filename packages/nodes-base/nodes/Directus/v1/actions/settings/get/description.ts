@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { SettingsProperties } from '../../interfaces';
+import type { SettingsProperties } from '../../interfaces';
 
 export const getDescription: SettingsProperties = [
 	...globalDescr.jsonParameters('settings', 'get'),

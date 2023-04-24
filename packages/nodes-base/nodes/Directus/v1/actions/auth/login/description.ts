@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { AuthProperties } from '../../interfaces';
+import type { AuthProperties } from '../../interfaces';
 
 export const loginDescription: AuthProperties = [
 	...globalDescr.jsonParameters('auth', 'login'),
@@ -38,7 +38,7 @@ export const loginDescription: AuthProperties = [
 		},
 		placeholder: 'admin@example.com',
 		default: '',
-		description: 'Email address of the user you\'re retrieving the access token for',
+		description: "Email address of the user you're retrieving the access token for",
 		required: true,
 	},
 	{

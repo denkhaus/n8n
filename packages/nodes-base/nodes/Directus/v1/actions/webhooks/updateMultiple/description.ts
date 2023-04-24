@@ -1,4 +1,4 @@
-import { WebhooksProperties } from '../../interfaces';
+import type { WebhooksProperties } from '../../interfaces';
 
 export const updateMultipleDescription: WebhooksProperties = [
 	{

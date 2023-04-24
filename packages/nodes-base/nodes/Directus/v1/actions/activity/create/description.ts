@@ -1,5 +1,5 @@
 import { globalDescr, options } from '../../../descriptions';
-import { ActivityProperties } from '../../interfaces';
+import type { ActivityProperties } from '../../interfaces';
 
 export const createDescription: ActivityProperties = [
 	{

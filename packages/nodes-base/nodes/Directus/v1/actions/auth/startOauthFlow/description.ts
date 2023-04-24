@@ -1,4 +1,4 @@
-import { AuthProperties } from '../../interfaces';
+import type { AuthProperties } from '../../interfaces';
 
 export const startOauthFlowDescription: AuthProperties = [
 	{
@@ -35,7 +35,8 @@ export const startOauthFlowDescription: AuthProperties = [
 				type: 'string',
 				placeholder: '',
 				default: '',
-				description: 'Where to redirect on successful login.If set the authentication details are set inside cookies otherwise a JSON is returned',
+				description:
+					'Where to redirect on successful login.If set the authentication details are set inside cookies otherwise a JSON is returned',
 			},
 		],
 	},

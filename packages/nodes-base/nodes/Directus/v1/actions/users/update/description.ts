@@ -1,4 +1,4 @@
-import { UsersProperties } from '../../interfaces';
+import type { UsersProperties } from '../../interfaces';
 
 export const updateDescription: UsersProperties = [
 	{
@@ -28,7 +28,8 @@ export const updateDescription: UsersProperties = [
 		},
 		placeholder: '{\n	"title": "CTO"\n}',
 		default: null,
-		description: 'A partial [user object](https://docs.directus.io/reference/api/system/users/#the-user-object)',
+		description:
+			'A partial [user object](https://docs.directus.io/reference/api/system/users/#the-user-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

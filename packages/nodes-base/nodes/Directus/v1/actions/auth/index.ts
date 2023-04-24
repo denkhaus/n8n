@@ -49,7 +49,8 @@ export const descriptions: INodeProperties[] = [
 			{
 				name: 'Reset Password',
 				value: 'resetPassword',
-				description: 'The request a password reset endpoint sends an email with a link to the admin app which in turn uses this endpoint to allow the user to reset their password',
+				description:
+					'The request a password reset endpoint sends an email with a link to the admin app which in turn uses this endpoint to allow the user to reset their password',
 			},
 			{
 				name: 'Start OAuth Flow',

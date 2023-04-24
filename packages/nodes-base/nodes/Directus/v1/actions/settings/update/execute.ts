@@ -6,14 +6,14 @@ export async function update(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
-	const parametersAreJson = this.getNodeParameter('jsonParameters', index) as boolean;
+	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
 	const additionalFields = !parametersAreJson
-		? (this.getNodeParameter('additionalFields', index) as IDataObject)
+		? this.getNodeParameter('additionalFields', index)
 		: {};
 	const data = (this.getNodeParameter('data', index) as IDataObject | string) ?? {};
 
 	const requestMethod = 'PATCH';
-	const endpoint = `settings`;
+	const endpoint = 'settings';
 
 	let qs: IDataObject = {};
 	if (parametersAreJson) {

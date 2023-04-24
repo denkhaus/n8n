@@ -1,5 +1,5 @@
 import { globalDescr } from '../../../descriptions';
-import { SettingsProperties } from '../../interfaces';
+import type { SettingsProperties } from '../../interfaces';
 
 export const updateDescription: SettingsProperties = [
 	...globalDescr.jsonParameters('settings', 'update'),
@@ -17,7 +17,8 @@ export const updateDescription: SettingsProperties = [
 		},
 		placeholder: '{\n	"project_url": "https://example.com/"\n}',
 		default: null,
-		description: 'A partial [settings object](https://docs.directus.io/reference/api/system/settings/#the-settings-object)',
+		description:
+			'A partial [settings object](https://docs.directus.io/reference/api/system/settings/#the-settings-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,

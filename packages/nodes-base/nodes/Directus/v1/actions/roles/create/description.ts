@@ -1,4 +1,4 @@
-import { RolesProperties } from '../../interfaces';
+import type { RolesProperties } from '../../interfaces';
 
 export const createDescription: RolesProperties = [
 	{
@@ -14,7 +14,8 @@ export const createDescription: RolesProperties = [
 		placeholder:
 			'{\n	"name": "Interns",\n	"icon": "verified_user",\n	"description": null,\n	"admin_access": false,\n	"app_access": true\n}',
 		default: null,
-		description: 'A partial [role object](https://docs.directus.io/reference/api/system/roles/#the-role-object)',
+		description:
+			'A partial [role object](https://docs.directus.io/reference/api/system/roles/#the-role-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,
