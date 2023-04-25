@@ -31,7 +31,7 @@ export const getDescription: AssetsProperties = [
 		},
 		placeholder: '',
 		default: false,
-		description: 'Enable if corresponding file data should also be included along with the asset',
+		description: 'Whether corresponding file data should also be included along with the asset',
 		required: true,
 	},
 	{
@@ -182,7 +182,7 @@ export const getDescription: AssetsProperties = [
 				type: 'boolean',
 				placeholder: '',
 				default: false,
-				description: 'Disable image up-scaling',
+				description: 'Whether to disable image up-scaling',
 			},
 		],
 	},

@@ -66,7 +66,7 @@ importers:
         version: 1.7.6(cypress@12.8.1)
       eslint-nibble:
         specifier: ^8.1.0
-        version: 8.1.0(eslint@8.28.0)
+        version: 8.1.0(eslint@8.39.0)
       jest:
         specifier: ^29.5.0
         version: 29.5.0
@@ -750,7 +750,7 @@ importers:
         version: 7.0.0-beta.46(@babel/core@7.20.12)(babel-loader@9.1.2)(css-loader@6.7.3)(vue@2.7.14)
       '@storybook/vue-webpack5':
         specifier: ^7.0.0-beta.46
-        version: 7.0.0-beta.46(@babel/core@7.20.12)(@babel/preset-env@7.20.2)(babel-loader@9.1.2)(css-loader@6.7.3)(esbuild@0.16.17)(eslint@8.28.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-loader@15.10.1)(vue-template-compiler@2.7.14)(vue@2.7.14)
+        version: 7.0.0-beta.46(@babel/core@7.20.12)(@babel/preset-env@7.20.2)(babel-loader@9.1.2)(css-loader@6.7.3)(esbuild@0.16.17)(eslint@8.39.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-loader@15.10.1)(vue-template-compiler@2.7.14)(vue@2.7.14)
       '@testing-library/jest-dom':
         specifier: ^5.16.5
         version: 5.16.5
@@ -5230,7 +5230,7 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/builder-webpack5@7.0.0-beta.46(esbuild@0.16.17)(eslint@8.28.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-template-compiler@2.7.14):
+  /@storybook/builder-webpack5@7.0.0-beta.46(esbuild@0.16.17)(eslint@8.39.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-template-compiler@2.7.14):
     resolution: {integrity: sha512-1pvo9IDlz836hiDFmALVttQxw4ehSd3UEhE6Yz0B+TMl4cAQuSRWze8w2sI474tiHtGeKGRoIIWmH5hSVQvFrQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5268,7 +5268,7 @@ packages:
       case-sensitive-paths-webpack-plugin: 2.4.0
       css-loader: 6.7.3(webpack@5.75.0)
       express: 4.18.2
-      fork-ts-checker-webpack-plugin: 6.5.2(eslint@8.28.0)(typescript@5.0.3)(vue-template-compiler@2.7.14)(webpack@5.75.0)
+      fork-ts-checker-webpack-plugin: 6.5.2(eslint@8.39.0)(typescript@5.0.3)(vue-template-compiler@2.7.14)(webpack@5.75.0)
       fs-extra: 11.1.0
       html-webpack-plugin: 5.5.0(webpack@5.75.0)
       path-browserify: 1.0.1
@@ -5850,7 +5850,7 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/vue-webpack5@7.0.0-beta.46(@babel/core@7.20.12)(@babel/preset-env@7.20.2)(babel-loader@9.1.2)(css-loader@6.7.3)(esbuild@0.16.17)(eslint@8.28.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-loader@15.10.1)(vue-template-compiler@2.7.14)(vue@2.7.14):
+  /@storybook/vue-webpack5@7.0.0-beta.46(@babel/core@7.20.12)(@babel/preset-env@7.20.2)(babel-loader@9.1.2)(css-loader@6.7.3)(esbuild@0.16.17)(eslint@8.39.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-loader@15.10.1)(vue-template-compiler@2.7.14)(vue@2.7.14):
     resolution: {integrity: sha512-PJJo/NGiWL1raOfHpJTb3X6LmLAC2TgI3EV2nDlkPigxj29O+zeMkyvfDky7eWpgOIbVqqtNVUYGH1GwbL7jqw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -5864,7 +5864,7 @@ packages:
       vue-template-compiler: ^2.6.8
     dependencies:
       '@babel/core': 7.20.12
-      '@storybook/builder-webpack5': 7.0.0-beta.46(esbuild@0.16.17)(eslint@8.28.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-template-compiler@2.7.14)
+      '@storybook/builder-webpack5': 7.0.0-beta.46(esbuild@0.16.17)(eslint@8.39.0)(react-dom@18.2.0)(react@17.0.2)(typescript@5.0.3)(vue-template-compiler@2.7.14)
       '@storybook/core-common': 7.0.0-beta.46
       '@storybook/preset-vue-webpack': 7.0.0-beta.46(@babel/core@7.20.12)(@babel/preset-env@7.20.2)(babel-loader@9.1.2)(css-loader@6.7.3)(esbuild@0.16.17)(typescript@5.0.3)(vue-loader@15.10.1)(vue-template-compiler@2.7.14)(vue@2.7.14)
       '@storybook/vue': 7.0.0-beta.46(@babel/core@7.20.12)(babel-loader@9.1.2)(css-loader@6.7.3)(vue@2.7.14)
@@ -11283,13 +11283,13 @@ packages:
     resolution: {integrity: sha512-NB/L/1Y30qyJcG5xZxCJKW/+bqyj+llbcCwo9DEz8bESIP0SLTOQ8T1DWCCFc+wJ61AMEstj4511PSScqMMfCw==}
     dev: false
 
-  /eslint-filtered-fix@0.3.0(eslint@8.28.0):
+  /eslint-filtered-fix@0.3.0(eslint@8.39.0):
     resolution: {integrity: sha512-UMHOza9epEn9T+yVT8RiCFf0JdALpVzmoH62Ez/zvxM540IyUNAkr7aH2Frkv6zlm9a/gbmq/sc7C4SvzZQXcA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      eslint: 8.28.0
+      eslint: 8.39.0
       optionator: 0.9.1
     dev: true
 
@@ -11368,7 +11368,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-nibble@8.1.0(eslint@8.28.0):
+  /eslint-nibble@8.1.0(eslint@8.39.0):
     resolution: {integrity: sha512-x9H/1oeuKdC0HsaWeBarOryqNLC+7QZfAZIAP0HnGcmiiPktFIQq/D0e+iiCSyqYLSaui3UwvH56sXMrf5oQhw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -11377,8 +11377,8 @@ packages:
     dependencies:
       '@ianvs/eslint-stats': 2.0.0
       chalk: 4.1.2
-      eslint: 8.28.0
-      eslint-filtered-fix: 0.3.0(eslint@8.28.0)
+      eslint: 8.39.0
+      eslint-filtered-fix: 0.3.0(eslint@8.39.0)
       eslint-formatter-friendly: 7.0.0
       eslint-summary: 1.0.0
       inquirer: 8.2.5
@@ -12325,7 +12325,7 @@ packages:
   /forever-agent@0.6.1:
     resolution: {integrity: sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==}
 
-  /fork-ts-checker-webpack-plugin@6.5.2(eslint@8.28.0)(typescript@5.0.3)(vue-template-compiler@2.7.14)(webpack@5.75.0):
+  /fork-ts-checker-webpack-plugin@6.5.2(eslint@8.39.0)(typescript@5.0.3)(vue-template-compiler@2.7.14)(webpack@5.75.0):
     resolution: {integrity: sha512-m5cUmF30xkZ7h4tWUgTAcEaKmUW7tfyUyTqNNOz7OxWJ0v1VWKTcOvH8FWHUwSjlW/356Ijc9vi3XfcPstpQKA==}
     engines: {node: '>=10', yarn: '>=1.0.0'}
     peerDependencies:
@@ -12345,7 +12345,7 @@ packages:
       chokidar: 3.5.2
       cosmiconfig: 6.0.0
       deepmerge: 4.2.2
-      eslint: 8.28.0
+      eslint: 8.39.0
       fs-extra: 9.1.0
       glob: 7.2.3
       memfs: 3.4.13

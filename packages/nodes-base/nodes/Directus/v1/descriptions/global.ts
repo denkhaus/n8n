@@ -20,7 +20,7 @@ export const splitIntoItems = (resource: string, operation: string): INodeProper
 		name: 'splitIntoItems',
 		type: 'boolean',
 		default: false,
-		description: 'Outputs each element of an array as own item',
+		description: 'Whether to qutput each element of an array as own item',
 		required: true,
 		displayOptions: {
 			show: {
@@ -66,7 +66,7 @@ export const jsonParameters = (resource: string, operation: string): INodeProper
 		placeholder: '',
 		default: false,
 		description:
-			'If the query and/or body parameter should be set via the value-key pair UI or JSON/RAW',
+			'Whether the query and/or body parameter should be set via the value-key pair UI or JSON/RAW',
 		required: true,
 	},
 ];
@@ -107,7 +107,7 @@ export const returnAll = (resource: string, operation: string): INodeProperties[
 			},
 		},
 		default: true,
-		description: 'If all results should be returned or only up to a given limit',
+		description: 'Whether all results should be returned or only up to a given limit',
 		required: true,
 	},
 ];

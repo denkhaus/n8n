@@ -2,7 +2,8 @@ import type { FieldsProperties } from '../../interfaces';
 
 export const deleteDescription: FieldsProperties = [
 	{
-		displayName: 'Field',
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+		displayName: 'Field Name',
 		name: 'field',
 		type: 'options',
 		displayOptions: {
@@ -13,6 +14,7 @@ export const deleteDescription: FieldsProperties = [
 		},
 		placeholder: '',
 		default: '',
+		// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 		description: 'Unique name of the field. Field name is unique within the collection.',
 		required: true,
 		typeOptions: {
@@ -20,7 +22,8 @@ export const deleteDescription: FieldsProperties = [
 		},
 	},
 	{
-		displayName: 'Collection',
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+		displayName: 'Collection Name',
 		name: 'collection',
 		type: 'options',
 		displayOptions: {
@@ -31,7 +34,6 @@ export const deleteDescription: FieldsProperties = [
 		},
 		placeholder: 'articles',
 		default: '',
-		description: 'The collection name',
 		required: true,
 		typeOptions: {
 			loadOptionsMethod: 'getCollections',

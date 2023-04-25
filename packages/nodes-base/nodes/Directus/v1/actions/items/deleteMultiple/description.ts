@@ -2,7 +2,8 @@ import type { ItemsProperties } from '../../interfaces';
 
 export const deleteMultipleDescription: ItemsProperties = [
 	{
-		displayName: 'Collection',
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+		displayName: 'Collection Name',
 		name: 'collection',
 		type: 'options',
 		displayOptions: {
@@ -13,6 +14,7 @@ export const deleteMultipleDescription: ItemsProperties = [
 		},
 		placeholder: 'articles',
 		default: '',
+		// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 		description: 'Unique name of the parent collection',
 		required: true,
 		typeOptions: {

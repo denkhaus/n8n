@@ -13,7 +13,7 @@ export const createDescription: FilesProperties = [
 		},
 		placeholder: '',
 		default: false,
-		description: 'Upload/create a new file',
+		description: 'Whether to upload/create a new file',
 		required: true,
 	},
 	{

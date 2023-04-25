@@ -2,7 +2,8 @@ import type { ItemsProperties } from '../../interfaces';
 
 export const createMultipleDescription: ItemsProperties = [
 	{
-		displayName: 'Collection',
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+		displayName: 'Collection Name',
 		name: 'collection',
 		type: 'options',
 		displayOptions: {

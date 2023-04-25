@@ -4,9 +4,6 @@ import { helpers } from '../../../methods';
 
 export async function get(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
 	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
-	const additionalFields = !parametersAreJson
-		? this.getNodeParameter('additionalFields', index)
-		: {};
 
 	const ID = (this.getNodeParameter('id', index) as string) ?? null;
 	const dataPropertyName = this.getNodeParameter('binaryPropertyName', index);
@@ -19,6 +16,8 @@ export async function get(this: IExecuteFunctions, index: number): Promise<INode
 		const data = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
 		qs = helpers.parseData(data);
 	} else {
+		const additionalFields = this.getNodeParameter('additionalFields', index);
+
 		for (const key of Object.keys(additionalFields)) {
 			if (key !== 'id' && key !== 'transforms') {
 				qs[key] = additionalFields[key];

@@ -13,6 +13,7 @@ export const updateDescription: RelationsProperties = [
 		},
 		placeholder: 'author',
 		default: '',
+		// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 		description:
 			'Name of the field that holds the related primary key. This matches the column name in the database.',
 		required: true,
@@ -41,6 +42,7 @@ export const updateDescription: RelationsProperties = [
 		},
 	},
 	{
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
 		displayName: 'Collection Name',
 		name: 'collection',
 		type: 'options',
@@ -52,6 +54,7 @@ export const updateDescription: RelationsProperties = [
 		},
 		placeholder: 'books',
 		default: '',
+		// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 		description: 'Unique name of the parent collection',
 		required: true,
 		typeOptions: {

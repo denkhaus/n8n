@@ -92,10 +92,12 @@ export const Aggregate = (): INodeProperties[] => [
 						description: 'Aggregation Function',
 					},
 					{
-						displayName: 'Field',
+						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+						displayName: 'Field Name',
 						name: 'value',
 						type: 'options',
 						default: '',
+						// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 						description: 'Field to apply aggregation on',
 						typeOptions: {
 							loadOptionsMethod: 'getFieldsInCollection',

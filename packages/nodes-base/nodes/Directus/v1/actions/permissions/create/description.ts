@@ -3,7 +3,8 @@ import type { PermissionsProperties } from '../../interfaces';
 
 export const createDescription: PermissionsProperties = [
 	{
-		displayName: 'Collection',
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+		displayName: 'Collection Name',
 		name: 'collection',
 		type: 'options',
 		displayOptions: {
@@ -17,6 +18,7 @@ export const createDescription: PermissionsProperties = [
 		},
 		placeholder: 'customers',
 		default: '',
+		// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 		description: 'What collection this permission applies to',
 		required: true,
 		typeOptions: {

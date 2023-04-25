@@ -3,7 +3,8 @@ import type { FieldsProperties } from '../../interfaces';
 
 export const listDescription: FieldsProperties = [
 	{
-		displayName: 'Collection',
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
+		displayName: 'Collection Name',
 		name: 'collection',
 		type: 'options',
 		displayOptions: {
@@ -14,7 +15,6 @@ export const listDescription: FieldsProperties = [
 		},
 		placeholder: 'articles',
 		default: '',
-		description: 'The collection name',
 		required: true,
 		typeOptions: {
 			loadOptionsMethod: 'getCollections',

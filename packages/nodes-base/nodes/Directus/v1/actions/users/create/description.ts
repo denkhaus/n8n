@@ -111,6 +111,7 @@ for all available languages and translations.`,
 				description: 'Location of the user',
 			},
 			{
+				// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
 				displayName: 'Role Name',
 				name: 'role',
 				type: 'options',
@@ -147,17 +148,14 @@ for all available languages and translations.`,
 					{
 						name: 'Auto',
 						value: 'auto',
-						description: '',
 					},
 					{
 						name: 'Dark',
 						value: 'dark',
-						description: '',
 					},
 					{
 						name: 'Light',
 						value: 'light',
-						description: '',
 					},
 				],
 			},
