@@ -22,7 +22,7 @@ export class DirectusApi implements ICredentialType {
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
-			placeholder: 'fc529da1-cda4-430f-992c-8b40ddd5fad0',
+			placeholder: 'fc529da1-cda4-430f-992c-8b40d145fad0',
 			description: 'The Static Token of the user',
 			required: false,
 		},
