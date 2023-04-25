@@ -12,8 +12,7 @@ export const enable2FADescription: UsersProperties = [
 			},
 		},
 		placeholder: '3CtiutsNBmY3szHE',
-		// eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-string
-		default: null,
+		default: '',
 		description: 'OTP generated with the secret, to recheck if the user has a correct TFA setup',
 		required: true,
 	},

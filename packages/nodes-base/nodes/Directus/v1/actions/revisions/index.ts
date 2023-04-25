@@ -21,11 +21,13 @@ export const descriptions: INodeProperties[] = [
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve a single revision by unique identifier',
+				action: 'Get a revision',
 			},
 			{
 				name: 'List',
 				value: 'list',
 				description: 'List the revisions',
+				action: 'List a revision',
 			},
 		],
 		default: 'list',

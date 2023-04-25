@@ -23,12 +23,8 @@ export async function login(this: IExecuteFunctions, index: number): Promise<INo
 
 		for (const key in additionalFields) {
 			if (['fields'].includes(key)) {
-				const object = additionalFields[key] as object | string;
-				if (typeof object === 'string') {
-					body[key] = JSON.stringify(JSON.parse(object));
-				} else {
-					body[key] = JSON.stringify(object);
-				}
+				const object = additionalFields[key] as IDataObject | string;
+				body[key] = helpers.parseData(object);
 			} else {
 				body[key] = additionalFields[key];
 			}

@@ -11,6 +11,7 @@ export const updateMultipleDescription: PermissionsProperties = [
 				resource: ['permissions'],
 			},
 		},
+		// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
 		placeholder: '{\n	"keys": [34, 65],\n	"data": {\n		"fields": ["id", "title", "body"]\n	}\n}',
 		default: null,
 		description: `Required:

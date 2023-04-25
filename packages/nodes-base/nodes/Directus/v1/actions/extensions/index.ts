@@ -21,6 +21,7 @@ export const descriptions: INodeProperties[] = [
 				value: 'list',
 				description:
 					'List the available extensions in the project. The types of extensions that you can list are interfaces, displays, layouts, modules.',
+				action: 'List extensions',
 			},
 		],
 		default: 'list',

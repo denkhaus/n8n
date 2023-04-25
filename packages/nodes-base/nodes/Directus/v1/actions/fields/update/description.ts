@@ -14,7 +14,7 @@ export const updateDescription: FieldsProperties = [
 				resource: ['fields'],
 			},
 		},
-		placeholder: 'id',
+		placeholder: 'author',
 		default: '',
 		description: 'Unique name of the field. Field name is unique within the collection.',
 		required: true,
@@ -102,14 +102,14 @@ export const updateDescription: FieldsProperties = [
 						description: 'A comma-separated value, returned as an array of strings',
 					},
 					{
-						name: 'DateTime',
-						value: 'dateTime',
-						description: "A date and time saved in the database vendor's format",
-					},
-					{
 						name: 'Date',
 						value: 'date',
 						description: "A date saved in the database vendor's format",
+					},
+					{
+						name: 'DateTime',
+						value: 'dateTime',
+						description: "A date and time saved in the database vendor's format",
 					},
 					{
 						name: 'Decimal',
@@ -185,14 +185,14 @@ export const updateDescription: FieldsProperties = [
 						description: 'A longer set of characters with no real-world max length',
 					},
 					{
-						name: 'Timestamp',
-						value: 'timestamp',
-						description: 'A date, time, and timezone saved in ISO 8601 format',
-					},
-					{
 						name: 'Time',
 						value: 'time',
 						description: "A time saved in the database vendor's format",
+					},
+					{
+						name: 'Timestamp',
+						value: 'timestamp',
+						description: 'A date, time, and timezone saved in ISO 8601 format',
 					},
 					{
 						name: 'UUID',

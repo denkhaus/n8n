@@ -15,7 +15,7 @@ export async function getCollections(this: ILoadOptionsFunctions): Promise<INode
 		value: c.collection,
 	})) as INodePropertyOptions[];
 
-	console.log('all collections:', response);
+	// console.log('all collections:', response);
 	return response;
 }
 
@@ -33,7 +33,7 @@ export async function getCustomCollections(
 		.filter((c: any) => !c.meta.system)
 		.map((c: any) => ({ name: c.collection, value: c.collection })) as INodePropertyOptions[];
 
-	console.log('user collections:', response);
+	// console.log('user collections:', response);
 	return response;
 }
 

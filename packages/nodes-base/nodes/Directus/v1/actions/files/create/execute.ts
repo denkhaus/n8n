@@ -14,7 +14,7 @@ export async function create(
 	const sendBinaryData = this.getNodeParameter('sendBinaryData', index) as boolean;
 	const additionalFields = this.getNodeParameter('additionalFields', index) ?? null;
 
-	const data: IDataObject = (additionalFields.data as IDataObject) ?? {};
+	const data: IDataObject = (additionalFields.data as IDataObject) ?? null;
 	const body: IDataObject = data ? helpers.parseData(data) : {};
 
 	const requestMethod = 'POST';
@@ -42,7 +42,6 @@ export async function create(
 
 		response = await directusApiFileRequest.call(this, requestMethod, endpoint, formData, body);
 	} else {
-		const body = helpers.parseData(data);
 		response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	}
 

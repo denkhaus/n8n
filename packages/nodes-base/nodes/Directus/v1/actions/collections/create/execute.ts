@@ -1,5 +1,6 @@
-import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
+import type { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { directusApiRequest } from '../../../transport';
+import { helpers } from '../../../methods';
 
 export async function create(
 	this: IExecuteFunctions,
@@ -14,7 +15,7 @@ export async function create(
 		? this.getNodeParameter('additionalFields', index)
 		: {};
 	const data = parametersAreJson
-		? (this.getNodeParameter('bodyParametersJson', index) as object)
+		? (this.getNodeParameter('bodyParametersJson', index) as IDataObject)
 		: {};
 
 	const requestMethod = 'POST';
@@ -22,20 +23,12 @@ export async function create(
 
 	let body = {} as any;
 	if (parametersAreJson) {
-		if (typeof data === 'string') {
-			body = JSON.parse(data);
-		} else {
-			body = JSON.parse(JSON.stringify(data));
-		}
+		body = helpers.parseData(data);
 	} else {
 		for (const key in data) {
 			if (['fields'].includes(key)) {
-				const object = additionalFields[key] as object | string;
-				if (typeof object === 'string') {
-					body[key] = JSON.stringify(JSON.parse(object));
-				} else {
-					body[key] = JSON.stringify(object);
-				}
+				const object = additionalFields[key] as IDataObject | string;
+				body[key] = helpers.parseData(object);
 			} else {
 				body[key] = additionalFields[key];
 			}

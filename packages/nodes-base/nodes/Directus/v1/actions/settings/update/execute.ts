@@ -7,9 +7,6 @@ export async function update(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const parametersAreJson = this.getNodeParameter('jsonParameters', index);
-	const additionalFields = !parametersAreJson
-		? this.getNodeParameter('additionalFields', index)
-		: {};
 	const data = (this.getNodeParameter('data', index) as IDataObject | string) ?? {};
 
 	const requestMethod = 'PATCH';
@@ -17,9 +14,10 @@ export async function update(
 
 	let qs: IDataObject = {};
 	if (parametersAreJson) {
-		const data = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
-		qs = helpers.parseData(data);
+		const params = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
+		qs = helpers.parseData(params);
 	} else {
+		const additionalFields = this.getNodeParameter('additionalFields', index);
 		helpers.applyVarsTo(qs, additionalFields);
 	}
 

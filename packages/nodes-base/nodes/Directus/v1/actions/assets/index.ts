@@ -19,6 +19,7 @@ export const descriptions: INodeProperties[] = [
 				name: 'Get',
 				value: 'get',
 				description: 'Image typed files can be dynamically resized and transformed to fit any need',
+				action: 'Get an asset',
 			},
 		],
 		default: 'get',

@@ -13,7 +13,7 @@ export const generate2FADescription: UsersProperties = [
 			},
 		},
 		placeholder: 'd1r3ctu5',
-		default: null,
+		default: '',
 		description: "The user's password of the currently authenticated user",
 		required: true,
 	},

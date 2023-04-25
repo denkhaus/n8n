@@ -54,7 +54,11 @@ export function formatResponse(response: any): IDataObject | IDataObject[] {
 }
 
 export function parseData(data: string | IDataObject): IDataObject {
-	return typeof data === 'string' ? JSON.parse(data) : JSON.parse(JSON.stringify(data));
+	try {
+		return typeof data === 'string' ? JSON.parse(data) : JSON.parse(JSON.stringify(data));
+	} catch (error) {
+		throw new Error(error);
+	}
 }
 
 export function applyVarsTo(target: IDataObject, vars: IDataObject) {
@@ -90,6 +94,7 @@ export async function responseToBinary(
 			? JSON.stringify(response)
 			: (response.result as string) ?? JSON.stringify(response);
 
+		console.log('strContent:', strContent);
 		if (exportType === 'json') {
 			binaryData = Buffer.from(strContent);
 			mimeType = 'application/json';

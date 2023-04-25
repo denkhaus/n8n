@@ -24,27 +24,32 @@ export const descriptions: INodeProperties[] = [
 				name: 'Create',
 				value: 'create',
 				description: 'Create a new collection in Directus',
+				action: 'Create a collection',
 			},
 			{
 				name: 'Delete',
 				value: 'delete',
 				description:
 					'Delete an existing collection. Warning: This will delete the whole collection, including the items within. Proceed with caution.',
+				action: 'Delete a collection',
 			},
 			{
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieves the details of a single collection',
+				action: 'Get a collection',
 			},
 			{
 				name: 'List',
 				value: 'list',
 				description: 'Returns a list of the collections available in the project',
+				action: 'List collections',
 			},
 			{
 				name: 'Update',
 				value: 'update',
 				description: 'Update an existing collection',
+				action: 'Update a collection',
 			},
 		],
 		default: 'list',

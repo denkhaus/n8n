@@ -43,6 +43,12 @@ export const createDescription: FieldsProperties = [
 		default: 'bigInteger',
 		required: true,
 		description: 'Directus specific data type. Used to cast values in the API.',
+		displayOptions: {
+			show: {
+				operation: ['create'],
+				resource: ['fields'],
+			},
+		},
 		options: [
 			{
 				name: 'Big Integer',
@@ -60,14 +66,14 @@ export const createDescription: FieldsProperties = [
 				description: 'A comma-separated value, returned as an array of strings',
 			},
 			{
-				name: 'DateTime',
-				value: 'dateTime',
-				description: "A date and time saved in the database vendor's format",
-			},
-			{
 				name: 'Date',
 				value: 'date',
 				description: "A date saved in the database vendor's format",
+			},
+			{
+				name: 'DateTime',
+				value: 'dateTime',
+				description: "A date and time saved in the database vendor's format",
 			},
 			{
 				name: 'Decimal',
@@ -143,14 +149,14 @@ export const createDescription: FieldsProperties = [
 				description: 'A longer set of characters with no real-world max length',
 			},
 			{
-				name: 'Timestamp',
-				value: 'timestamp',
-				description: 'A date, time, and timezone saved in ISO 8601 format',
-			},
-			{
 				name: 'Time',
 				value: 'time',
 				description: "A time saved in the database vendor's format",
+			},
+			{
+				name: 'Timestamp',
+				value: 'timestamp',
+				description: 'A date, time, and timezone saved in ISO 8601 format',
 			},
 			{
 				name: 'UUID',

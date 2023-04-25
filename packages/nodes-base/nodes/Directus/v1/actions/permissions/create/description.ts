@@ -45,18 +45,22 @@ export const createDescription: PermissionsProperties = [
 			{
 				name: 'Create',
 				value: 'create',
+				action: 'Create a permission',
 			},
 			{
 				name: 'Delete',
 				value: 'delete',
+				action: 'Delete a permission',
 			},
 			{
 				name: 'Read',
 				value: 'read',
+				action: 'Read a permission',
 			},
 			{
 				name: 'Update',
 				value: 'update',
+				action: 'Update a permission',
 			},
 		],
 	},

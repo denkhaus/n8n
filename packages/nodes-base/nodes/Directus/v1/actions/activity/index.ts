@@ -24,27 +24,32 @@ export const descriptions: INodeProperties[] = [
 				name: 'Create',
 				value: 'create',
 				description: 'Creates a new comment',
+				action: 'Create an activity',
 			},
 			{
 				name: 'Delete',
 				value: 'delete',
 				description: 'Delete an existing comment. Deleted comments can not be retrieved.',
+				action: 'Delete an activity',
 			},
 			{
 				name: 'Get',
 				value: 'get',
 				description:
 					'Retrieves the details of an existing activity action. Provide the primary key of the activity action and Directus will return the corresponding information.',
+				action: 'Get an activity',
 			},
 			{
 				name: 'List',
 				value: 'list',
 				description: 'Returns a list of activity actions',
+				action: 'List activities',
 			},
 			{
 				name: 'Update',
 				value: 'update',
 				description: 'Update the content of an existing comment',
+				action: 'Update an activity',
 			},
 		],
 		default: 'list',

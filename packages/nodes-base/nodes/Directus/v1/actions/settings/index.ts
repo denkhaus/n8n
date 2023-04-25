@@ -21,11 +21,13 @@ export const descriptions: INodeProperties[] = [
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve Settings',
+				action: 'Get a setting',
 			},
 			{
 				name: 'Update',
 				value: 'update',
 				description: 'Update the settings',
+				action: 'Update a setting',
 			},
 		],
 		default: 'get',

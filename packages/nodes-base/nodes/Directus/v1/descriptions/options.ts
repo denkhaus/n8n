@@ -49,26 +49,6 @@ export const Aggregate = (): INodeProperties[] => [
 						default: 'count',
 						options: [
 							{
-								name: 'Count',
-								value: 'count',
-								description: 'Counts how many items there are',
-							},
-							{
-								name: 'Count Distinct',
-								value: 'countDistinct',
-								description: 'Counts how many unique items there are',
-							},
-							{
-								name: 'SUM',
-								value: 'sum',
-								description: 'Adds together the values in the given field',
-							},
-							{
-								name: 'SUM Distinct',
-								value: 'sumDistinct',
-								description: 'Adds together the unique values in the given field',
-							},
-							{
 								name: 'Average',
 								value: 'avg',
 								description: 'Get the average value of the given field',
@@ -79,14 +59,34 @@ export const Aggregate = (): INodeProperties[] => [
 								description: 'Get the average value of the unique values in the given field',
 							},
 							{
-								name: 'Minimum',
-								value: 'min',
-								description: 'Return the lowest value in the field',
+								name: 'Count',
+								value: 'count',
+								description: 'Counts how many items there are',
+							},
+							{
+								name: 'Count Distinct',
+								value: 'countDistinct',
+								description: 'Counts how many unique items there are',
 							},
 							{
 								name: 'Maximum',
 								value: 'max',
 								description: 'Return the highest value in the field',
+							},
+							{
+								name: 'Minimum',
+								value: 'min',
+								description: 'Return the lowest value in the field',
+							},
+							{
+								name: 'SUM',
+								value: 'sum',
+								description: 'Adds together the values in the given field',
+							},
+							{
+								name: 'SUM Distinct',
+								value: 'sumDistinct',
+								description: 'Adds together the unique values in the given field',
 							},
 						],
 						description: 'Aggregation Function',

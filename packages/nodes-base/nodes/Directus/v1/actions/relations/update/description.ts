@@ -2,7 +2,7 @@ import type { RelationsProperties } from '../../interfaces';
 
 export const updateDescription: RelationsProperties = [
 	{
-		displayName: 'Field',
+		displayName: 'Field Name',
 		name: 'field',
 		type: 'options',
 		displayOptions: {
@@ -34,7 +34,7 @@ export const updateDescription: RelationsProperties = [
 		placeholder: '{\n	"meta": {\n		"one_field": "articles"\n	}\n}',
 		default: null,
 		description:
-			'A partial [relation object](https://docs.directus.io/reference/api/system/relations/#the-relation-object)',
+			'A partial [relation object](https://docs.directus.io/reference/relations/#the-relation-object)',
 		required: true,
 		typeOptions: {
 			alwaysOpenEditWindow: true,
