@@ -31,7 +31,7 @@ export const Aggregate = (): INodeProperties[] => [
 		name: 'aggregate',
 		type: 'fixedCollection',
 		placeholder: 'Add Aggregation Functions',
-		default: '',
+		default: {},
 		description:
 			'Aggregate functions allow you to perform calculations on a set of values, returning a single result',
 		typeOptions: {

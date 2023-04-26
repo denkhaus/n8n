@@ -129,6 +129,7 @@ export const createDescription: FieldsProperties = [
 				value: 'o2m',
 				description: 'One to Many relationship',
 			},
+			// eslint-disable-next-line n8n-nodes-base/node-param-option-value-duplicate
 			{
 				name: 'Presentation',
 				value: 'alias',
@@ -206,4 +207,5 @@ export const createDescription: FieldsProperties = [
 		],
 	},
 	...globalDescr.jsonParameters('fields', 'create'),
+	...globalDescr.bodyParametersJson('fields', 'create'),
 ];

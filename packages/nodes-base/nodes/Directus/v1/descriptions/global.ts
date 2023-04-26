@@ -107,7 +107,7 @@ export const returnAll = (resource: string, operation: string): INodeProperties[
 			},
 		},
 		default: true,
-		description: 'Whether all results should be returned or only up to a given limit',
+		description: 'Whether to return all results or only up to a given limit',
 		required: true,
 	},
 ];
@@ -129,7 +129,7 @@ export const limit = (resource: string, operation: string): INodeProperties[] =>
 		},
 		placeholder: '',
 		default: 50,
-		description: 'A limit on the number of objects that are returned',
+		description: 'Max number of results to return',
 		required: true,
 		typeOptions: {
 			minValue: 1,

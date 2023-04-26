@@ -53,6 +53,7 @@ export const createDescription: WebhooksProperties = [
 		],
 	},
 	{
+		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-multi-options
 		displayName: 'Collections',
 		name: 'collections',
 		type: 'multiOptions',

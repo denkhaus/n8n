@@ -168,6 +168,7 @@ export const updateDescription: FieldsProperties = [
 						value: 'o2m',
 						description: 'One to Many relationship',
 					},
+					// eslint-disable-next-line n8n-nodes-base/node-param-option-value-duplicate
 					{
 						name: 'Presentation',
 						value: 'alias',
