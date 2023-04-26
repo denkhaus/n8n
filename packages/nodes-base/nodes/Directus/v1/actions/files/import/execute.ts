@@ -11,7 +11,7 @@ export async function imp(this: IExecuteFunctions, index: number): Promise<INode
 	const endpoint = 'files/import';
 
 	const body: IDataObject = {
-		data: helpers.parseData(data),
+		data: helpers.parseData(data, 'Additional Fields'),
 		url: URL,
 	};
 

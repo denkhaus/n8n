@@ -15,13 +15,13 @@ export async function update(
 	let qs: IDataObject = {};
 	if (parametersAreJson) {
 		const params = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
-		qs = helpers.parseData(params);
+		qs = helpers.parseData(params, 'Query Parameters');
 	} else {
 		const additionalFields = this.getNodeParameter('additionalFields', index);
 		helpers.applyVarsTo(qs, additionalFields);
 	}
 
-	const body = helpers.parseData(data);
+	const body = helpers.parseData(data, 'Data (JSON)');
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body, qs);
 	return this.helpers.returnJsonArray(response);
 }

@@ -15,7 +15,7 @@ export async function create(
 	const additionalFields = this.getNodeParameter('additionalFields', index) ?? null;
 
 	const data: IDataObject = (additionalFields.data as IDataObject) ?? null;
-	const body: IDataObject = data ? helpers.parseData(data) : {};
+	const body: IDataObject = data ? helpers.parseData(data, 'File Object (JSON)') : {};
 
 	const requestMethod = 'POST';
 	const endpoint = 'files';

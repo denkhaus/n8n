@@ -17,7 +17,7 @@ export async function create(
 	let body: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
-		body = helpers.parseData(data);
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
 		helpers.applyVarsTo(body, additionalFields);
 		body.email = this.getNodeParameter('email', index) as string;

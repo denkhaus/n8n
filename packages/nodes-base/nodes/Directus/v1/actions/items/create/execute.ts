@@ -12,7 +12,7 @@ export async function create(
 	const requestMethod = 'POST';
 	const endpoint = `items/${collection}`;
 
-	const body = helpers.parseData(data);
+	const body = helpers.parseData(data, 'Data (JSON)');
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	return this.helpers.returnJsonArray(response);
 }

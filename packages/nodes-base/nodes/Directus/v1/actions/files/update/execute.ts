@@ -16,7 +16,7 @@ export async function update(
 	const additionalFields = this.getNodeParameter('additionalFields', index) ?? null;
 
 	const data: IDataObject = (additionalFields.data as IDataObject) ?? {};
-	const body: IDataObject = data ? helpers.parseData(data) : {};
+	const body: IDataObject = data ? helpers.parseData(data, 'File Object (JSON)') : {};
 
 	const requestMethod = 'PATCH';
 	const endpoint = `files/${ID}`;

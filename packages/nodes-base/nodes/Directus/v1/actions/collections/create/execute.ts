@@ -11,24 +11,19 @@ export async function create(
 		? (this.getNodeParameter('collection', index) as string)
 		: null;
 
-	const additionalFields = !parametersAreJson
-		? this.getNodeParameter('additionalFields', index)
-		: {};
-	const data = parametersAreJson
-		? (this.getNodeParameter('bodyParametersJson', index) as IDataObject)
-		: {};
-
 	const requestMethod = 'POST';
 	const endpoint = 'collections';
 
-	let body = {} as any;
+	let body: IDataObject = {};
 	if (parametersAreJson) {
-		body = helpers.parseData(data);
+		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject;
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
-		for (const key in data) {
+		const additionalFields = this.getNodeParameter('additionalFields', index);
+		for (const key of Object.keys(additionalFields)) {
 			if (['fields'].includes(key)) {
 				const object = additionalFields[key] as IDataObject | string;
-				body[key] = helpers.parseData(object);
+				body[key] = helpers.parseData(object, key);
 			} else {
 				body[key] = additionalFields[key];
 			}

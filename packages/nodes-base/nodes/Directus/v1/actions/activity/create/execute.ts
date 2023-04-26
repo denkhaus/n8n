@@ -8,9 +8,6 @@ export async function create(
 ): Promise<INodeExecutionData[]> {
 	const qs: IDataObject = {};
 	const parametersAreJson = this.getNodeParameter('jsonParameters', index) ?? false;
-	const additionalFields = !parametersAreJson
-		? this.getNodeParameter('additionalFields', index)
-		: {};
 
 	const requestMethod = 'POST';
 	const endpoint = 'activity/comment';
@@ -18,11 +15,12 @@ export async function create(
 	let body: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
-		body = helpers.parseData(data);
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
 		const collection = this.getNodeParameter('collection', index) as string;
 		const comment = this.getNodeParameter('comment', index) as string;
 		const item = this.getNodeParameter('item', index) as number;
+		const additionalFields = this.getNodeParameter('additionalFields', index);
 		Object.keys(additionalFields).forEach((key) => (qs[key] = additionalFields[key]));
 
 		body.comment = comment;

@@ -14,12 +14,10 @@ export async function resetPassword(
 	let body: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
-		body = helpers.parseData(data);
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
-		const token = (this.getNodeParameter('token', index) as string) ?? '';
-		const password = (this.getNodeParameter('password', index) as string) ?? '';
-		body.token = token;
-		body.password = password;
+		body.token = (this.getNodeParameter('token', index) as string) ?? '';
+		body.password = (this.getNodeParameter('password', index) as string) ?? '';
 	}
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

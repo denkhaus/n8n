@@ -14,19 +14,18 @@ export async function get(this: IExecuteFunctions, index: number): Promise<INode
 	let qs: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
-		qs = helpers.parseData(data);
+		qs = helpers.parseData(data, 'Query Parameters');
 	} else {
 		const additionalFields = this.getNodeParameter('additionalFields', index);
-
 		for (const key of Object.keys(additionalFields)) {
 			if (key !== 'id' && key !== 'transforms') {
 				qs[key] = additionalFields[key];
 			}
 			if (key === 'transforms') {
 				if (typeof additionalFields[key] === 'string') {
-					qs[key] = JSON.parse(additionalFields[key] as string);
+					qs[key] = helpers.parseData(additionalFields[key] as string, key);
 				} else {
-					qs[key] = JSON.parse(JSON.stringify(additionalFields[key]));
+					qs[key] = helpers.parseData(JSON.stringify(additionalFields[key]), key);
 				}
 			}
 		}

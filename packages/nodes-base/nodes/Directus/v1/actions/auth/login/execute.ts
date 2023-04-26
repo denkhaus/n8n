@@ -4,11 +4,6 @@ import { helpers } from '../../../methods';
 
 export async function login(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
 	const parametersAreJson = this.getNodeParameter('jsonParameters', index) ?? false;
-	const additionalFields = !parametersAreJson
-		? this.getNodeParameter('additionalFields', index)
-		: {};
-	const email = !parametersAreJson ? (this.getNodeParameter('email', index) as string) : '';
-	const password = !parametersAreJson ? (this.getNodeParameter('password', index) as string) : '';
 
 	const requestMethod = 'POST';
 	const endpoint = 'auth/login';
@@ -16,15 +11,16 @@ export async function login(this: IExecuteFunctions, index: number): Promise<INo
 	let body: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
-		body = helpers.parseData(data);
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
-		body.email = email;
-		body.password = password;
+		body.email = this.getNodeParameter('email', index) as string;
+		body.password = this.getNodeParameter('password', index) as string;
+		const additionalFields = this.getNodeParameter('additionalFields', index);
 
-		for (const key in additionalFields) {
+		for (const key of Object.keys(additionalFields)) {
 			if (['fields'].includes(key)) {
 				const object = additionalFields[key] as IDataObject | string;
-				body[key] = helpers.parseData(object);
+				body[key] = helpers.parseData(object, key);
 			} else {
 				body[key] = additionalFields[key];
 			}

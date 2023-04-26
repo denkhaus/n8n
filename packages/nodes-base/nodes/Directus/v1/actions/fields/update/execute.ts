@@ -19,7 +19,7 @@ export async function update(
 
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject;
-		body = helpers.parseData(data);
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
 		for (const key of Object.keys(additionalFields)) {
 			body[key] = additionalFields[key];

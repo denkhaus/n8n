@@ -16,7 +16,7 @@ export async function get(this: IExecuteFunctions, index: number): Promise<INode
 	let qs: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
-		qs = helpers.parseData(data);
+		qs = helpers.parseData(data, 'Query Parameters');
 	} else {
 		helpers.applyVarsTo(qs, additionalFields);
 	}

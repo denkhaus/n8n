@@ -22,8 +22,8 @@ export async function create(
 	}
 
 	if (parametersAreJson) {
-		const data = additionalFields.bodyParametersJson as IDataObject | string;
-		body = helpers.parseData(data);
+		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
+		body = helpers.parseData(data, 'Body Parameters');
 	}
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);

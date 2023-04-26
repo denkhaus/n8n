@@ -1,10 +1,13 @@
-import type {
+import {
 	IBinaryKeyData,
 	IDataObject,
 	IExecuteFunctions,
 	IExecuteSingleFunctions,
 	INodeExecutionData,
 } from 'n8n-workflow';
+//@ts-expect-error
+import parseJSON from 'json-parse-even-better-errors';
+
 import type { IAggregationDescription } from '../types';
 
 export function hasAnyKeys(o: IDataObject | undefined): boolean {
@@ -53,11 +56,19 @@ export function formatResponse(response: any): IDataObject | IDataObject[] {
 	return Array.isArray(data) && data.length === 0 ? {} : data;
 }
 
-export function parseData(data: string | IDataObject): IDataObject {
+export function parseData(data: string | IDataObject, fieldName: string): IDataObject {
+	let strData: string = '';
 	try {
-		return typeof data === 'string' ? JSON.parse(data) : JSON.parse(JSON.stringify(data));
+		strData = typeof data === 'string' ? data : JSON.stringify(data);
+		return parseJSON(strData);
 	} catch (error) {
-		throw new Error(error);
+		const get = error.message.match(/JSON at position ([0-9]+) while/i);
+		const position = get ? Number(get[1]) : error.position - 1;
+		const lines = Array.from(strData).slice(0, position).toString().split('\n');
+		const line = lines.length > 0 ? lines.length - 1 : 0;
+		const column = lines[line - 1].length;
+
+		throw new Error(`Invalid JSON data found in field '${fieldName}' @ [${line},${column}]`);
 	}
 }
 
@@ -65,7 +76,7 @@ export function applyVarsTo(target: IDataObject, vars: IDataObject) {
 	for (const key in vars) {
 		if (['deep', 'filter'].includes(key)) {
 			const o = vars[key] as IDataObject | string;
-			target[key] = parseData(o);
+			target[key] = parseData(o, key);
 		} else if (['aggregate'].includes(key)) {
 			const o = vars[key] as IDataObject;
 			const ad = o.aggregationFunctions as IAggregationDescription[];

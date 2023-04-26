@@ -8,9 +8,6 @@ export async function update(
 ): Promise<INodeExecutionData[]> {
 	const ID = this.getNodeParameter('id', index) as string;
 	const parametersAreJson = this.getNodeParameter('jsonParameters', index) ?? false;
-	const additionalFields = !parametersAreJson
-		? this.getNodeParameter('additionalFields', index)
-		: {};
 
 	const requestMethod = 'PATCH';
 	const endpoint = `folders/${ID}`;
@@ -18,8 +15,9 @@ export async function update(
 	let body: IDataObject = {};
 	if (parametersAreJson) {
 		const data = this.getNodeParameter('bodyParametersJson', index) as IDataObject | string;
-		body = helpers.parseData(data);
+		body = helpers.parseData(data, 'Body Parameters');
 	} else {
+		const additionalFields = this.getNodeParameter('additionalFields', index);
 		helpers.applyVarsTo(body, additionalFields);
 	}
 

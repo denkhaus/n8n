@@ -12,7 +12,7 @@ import type {
 } from 'n8n-workflow';
 import type { DirectusCredentials } from '../types';
 import { NodeApiError } from 'n8n-workflow';
-import { formatResponse } from '../methods/helpers';
+import { formatResponse, parseData } from '../methods/helpers';
 
 const StandardUserAgent =
 	'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0';
@@ -27,7 +27,7 @@ export async function directusApiRequest(
 	const credentials = (await this.getCredentials('directusApi')) as DirectusCredentials;
 
 	if (!credentials) {
-		throw new Error('No credentials got returned!');
+		throw new Error('No credentials provided');
 	}
 
 	const params = credentials;
@@ -65,7 +65,7 @@ export async function directusApiAssetRequest(
 	const credentials = (await this.getCredentials('directusApi')) as DirectusCredentials;
 
 	if (!credentials) {
-		throw new Error('No credentials got returned!');
+		throw new Error('No credentials provided');
 	}
 
 	const params = credentials;
@@ -148,7 +148,7 @@ export async function directusApiFileRequest(
 	const credentials = (await this.getCredentials('directusApi')) as DirectusCredentials;
 
 	if (!credentials) {
-		throw new Error('No credentials got returned!');
+		throw new Error('No credentials provided');
 	}
 
 	const params = credentials;
@@ -176,15 +176,16 @@ export async function directusApiFileRequest(
 			console.log('Uploading raw file');
 			const response = await this.helpers.request(optionsFormData);
 			//const response = await this.helpers.httpRequestWithAuthentication.call(this, 'directusApi', optionsFormData);
-			const file = JSON.parse(response).data;
+			const file = parseData(response, 'API Response').data as IDataObject;
 
-			console.log('Raw file uploaded');
-
-			// 2. Update the file object with fileObject properties
-			const res = await directusApiRequest.call(this, 'PATCH', `files/${file.id}`, body);
-			console.log('File data updated');
-			//console.log({res});
-			Object.assign(responseFile, res);
+			if (file) {
+				console.log('Raw file uploaded');
+				// 2. Update the file object with fileObject properties
+				const res = await directusApiRequest.call(this, 'PATCH', `files/${file.id}`, body);
+				console.log('File data updated');
+				//console.log({res});
+				Object.assign(responseFile, res);
+			}
 		}
 		if (method === 'PATCH') {
 			// 1. Check if formdata and/or body are provided
@@ -195,7 +196,7 @@ export async function directusApiFileRequest(
 			if (isForm) {
 				const response = await this.helpers.request(optionsFormData);
 				//const response = await this.helpers.httpRequestWithAuthentication.call(this, 'directusApi', optionsFormData);
-				const file = JSON.parse(response).data;
+				const file = parseData(response, 'API Response').data as IDataObject;
 				Object.assign(responseFile, file);
 			}
 			if (isBody) {
