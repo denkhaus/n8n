@@ -51,9 +51,8 @@ export function buildEndpoint(
 }
 
 export function formatResponse(response: any): IDataObject | IDataObject[] {
-	let data = typeof response !== 'object' ? { result: response } : response.data ?? {};
-	data = typeof data !== 'object' ? { result: data } : data;
-	return Array.isArray(data) && data.length === 0 ? {} : data;
+	const data = typeof response !== 'object' ? { result: response } : response.data ?? {};
+	return typeof data !== 'object' ? { result: data } : data;
 }
 
 export function parseData(data: string | IDataObject, fieldName: string): IDataObject {
@@ -62,13 +61,25 @@ export function parseData(data: string | IDataObject, fieldName: string): IDataO
 		strData = typeof data === 'string' ? data : JSON.stringify(data);
 		return parseJSON(strData);
 	} catch (error) {
+		if (strData.length === 0) {
+			throw new Error('parseJSON: JSON input empty');
+		}
+
 		const get = error.message.match(/JSON at position ([0-9]+) while/i);
 		const position = get ? Number(get[1]) : error.position - 1;
-		const lines = Array.from(strData).slice(0, position).toString().split('\n');
+		const displayMinPos = Math.max(0, position - 10);
+		const displayMaxPos = Math.min(strData.length - 1, position + 10);
+
+		const strDataArray = Array.from(strData);
+
+		const lines = strDataArray.slice(0, position).toString().split('\n');
+		const sample = encodeURIComponent(strDataArray.slice(displayMinPos, displayMaxPos).join(''));
 		const line = lines.length > 0 ? lines.length - 1 : 0;
 		const column = lines[line - 1].length;
 
-		throw new Error(`Invalid JSON data found in field '${fieldName}' @ [${line},${column}]`);
+		throw new Error(
+			`Invalid JSON data found in field '${fieldName}' at [line:${line},col:${column}]: ${sample}`,
+		);
 	}
 }
 

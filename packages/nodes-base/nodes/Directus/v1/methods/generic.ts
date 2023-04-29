@@ -25,7 +25,7 @@ export function callAPI(
 
 		const body: IDataObject =
 			bodyParam && bodyParam.length > 0
-				? parseData(this.getNodeParameter(bodyParam, index) as IDataObject | string)
+				? parseData(this.getNodeParameter(bodyParam, index) as IDataObject | string, 'body')
 				: {};
 
 		const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
@@ -49,7 +49,7 @@ export function listStd(endpointParams: string[]): CallAPIFunc {
 
 		if (parametersAreJson) {
 			const data = this.getNodeParameter('queryParametersJson', index) as IDataObject | string;
-			qs = parseData(data);
+			qs = parseData(data, 'Query Parameters');
 		} else {
 			additionalFields = this.getNodeParameter('additionalFields', index);
 			const returnAll = this.getNodeParameter('returnAll', index);

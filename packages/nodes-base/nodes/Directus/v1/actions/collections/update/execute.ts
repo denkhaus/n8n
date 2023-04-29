@@ -13,7 +13,7 @@ export async function update(
 	const endpoint = `collections/${collection}`;
 	const body: IDataObject = { collection };
 
-	body.meta = helpers.parseData(additionalFields.meta as IDataObject | string);
+	body.meta = helpers.parseData(additionalFields.meta as IDataObject | string, 'Meta');
 
 	const response = await directusApiRequest.call(this, requestMethod, endpoint, body);
 	return this.helpers.returnJsonArray(response);
