@@ -5,6 +5,20 @@ export const upsertDescription: ItemsProperties = [
 	...globalDescr.returnAll('items', 'upsert'),
 	...globalDescr.limit('items', 'upsert'),
 	{
+		displayName: 'Skip Update',
+		name: 'skipUpdate',
+		type: 'boolean',
+		displayOptions: {
+			show: {
+				operation: ['upsert'],
+				resource: ['items'],
+			},
+		},
+		default: false,
+		description: 'Whether to skip the update step if item(s) is/are available',
+		required: true,
+	},
+	{
 		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
 		displayName: 'Collection Name',
 		name: 'collection',
@@ -43,20 +57,7 @@ export const upsertDescription: ItemsProperties = [
 			alwaysOpenEditWindow: true,
 		},
 	},
-	{
-		displayName: 'Ensure',
-		name: 'ensure',
-		type: 'boolean',
-		displayOptions: {
-			show: {
-				operation: ['upsert'],
-				resource: ['items'],
-			},
-		},
-		default: false,
-		description: 'Whether to skip the update step if item(s) is/are available',
-		required: true,
-	},
+
 	{
 		displayName: 'Select items to create or update',
 		name: 'filters',

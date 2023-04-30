@@ -8,7 +8,7 @@ export async function upsert(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const filters = this.getNodeParameter('filters', index);
-	const ensure = this.getNodeParameter('ensure', index) as boolean;
+	const skipUpdate = this.getNodeParameter('skipUpdate', index) as boolean;
 	const returnAll = this.getNodeParameter('returnAll', index);
 	const data = this.getNodeParameter('data', index) as IDataObject | string;
 
@@ -33,8 +33,8 @@ export async function upsert(
 		//create a new item
 		const createResponse = await directusApiRequest.call(this, 'POST', endpoint, body);
 		return this.helpers.returnJsonArray(createResponse);
-	} else if (ensure) {
-		// ensure skips update step
+	} else if (skipUpdate) {
+		// skipUpdate skips update step
 		return this.helpers.returnJsonArray(listResponse);
 	}
 
