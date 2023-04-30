@@ -44,7 +44,21 @@ export const upsertDescription: ItemsProperties = [
 		},
 	},
 	{
-		displayName: 'Select',
+		displayName: 'Ensure',
+		name: 'ensure',
+		type: 'boolean',
+		displayOptions: {
+			show: {
+				operation: ['upsert'],
+				resource: ['items'],
+			},
+		},
+		default: false,
+		description: 'Whether to skip the update step if item(s) is/are available',
+		required: true,
+	},
+	{
+		displayName: 'Select items to create or update',
 		name: 'filters',
 		type: 'collection',
 		placeholder: 'Add Filter',
